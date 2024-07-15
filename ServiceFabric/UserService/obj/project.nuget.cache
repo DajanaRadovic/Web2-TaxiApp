@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "UwGw9t5Kd41EvC4sybdJvDQ/cGSZ+0283ZENWDPlgiG/Xs3K9Gn7/zcJRxifP0q4Mkyf/CUjhrK2t0R3GSZT3A==",
+  "success": true,
+  "projectFilePath": "D:\\TAXI-APP\\ServiceFabric\\UserService\\UserService.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.servicefabric\\10.1.1951\\microsoft.servicefabric.10.1.1951.nupkg.sha512",
+    "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.servicefabric.data\\7.1.1951\\microsoft.servicefabric.data.7.1.1951.nupkg.sha512",
+    "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.servicefabric.data.extensions\\7.1.1951\\microsoft.servicefabric.data.extensions.7.1.1951.nupkg.sha512",
+    "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.servicefabric.data.interfaces\\7.1.1951\\microsoft.servicefabric.data.interfaces.7.1.1951.nupkg.sha512",
+    "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.servicefabric.diagnostics.internal\\7.1.1951\\microsoft.servicefabric.diagnostics.internal.7.1.1951.nupkg.sha512",
+    "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.servicefabric.services\\7.1.1951\\microsoft.servicefabric.services.7.1.1951.nupkg.sha512",
+    "C:\\Users\\Milijana\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\8.0.3\\microsoft.aspnetcore.app.runtime.win-x64.8.0.3.nupkg.sha512",
+    "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.3\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.3.nupkg.sha512",
+    "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.3\\microsoft.netcore.app.runtime.win-x64.8.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,1 @@
+D:\proba taxi\ServiceFabric\ServiceFabric\obj\x64\Debug\ServiceFabric.sfproj.CoreCompileInputs.cache
