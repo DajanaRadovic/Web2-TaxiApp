@@ -6,12 +6,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using Common.Entity;
 using Common.Interface;
+using Common.Mapper;
 using Common.Model;
 using Microsoft.ServiceFabric.Data;
 using Microsoft.ServiceFabric.Data.Collections;
 using Microsoft.ServiceFabric.Services.Client;
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
 using Microsoft.ServiceFabric.Services.Remoting.Client;
+using Microsoft.ServiceFabric.Services.Remoting.Runtime;
 using Microsoft.ServiceFabric.Services.Runtime;
 using Microsoft.WindowsAzure.Storage.Table;
 
@@ -401,6 +403,35 @@ namespace DriveService
             }
         }
 
+        private async Task LoadDrive()
+        {
+            var drive = await this.StateManager.GetOrAddAsync<IReliableDictionary<Guid, Drive>>("Drives");
+
+            try
+            {
+                using (var transaction = StateManager.CreateTransaction())
+                {
+                    var drives = driveRepo.GetAllDrives();
+                    if (drives.Count() == 0) return;
+                    else
+                    {
+                        foreach (var pom in drives)
+                        {
+                            await drive.AddAsync(transaction, pom.IdDrive, DriveMapper.MapDriveEntity(pom));
+                        }
+                    }
+
+                    await transaction.CommitAsync();
+
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         /// <summary>
         /// Optional override to create listeners (e.g., HTTP, Service Remoting, WCF, etc.) for this service replica to handle client or user requests.
         /// </summary>
@@ -409,9 +440,7 @@ namespace DriveService
         /// </remarks>
         /// <returns>A collection of listeners.</returns>
         protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
-        {
-            return new ServiceReplicaListener[0];
-        }
+        => this.CreateServiceRemotingReplicaListeners();
 
         /// <summary>
         /// This is the main entry point for your service replica.
@@ -423,28 +452,72 @@ namespace DriveService
             // TODO: Replace the following sample code with your own logic 
             //       or remove this RunAsync override if it's not needed in your service.
 
-            var myDictionary = await this.StateManager.GetOrAddAsync<IReliableDictionary<string, long>>("myDictionary");
+            var drives = await this.StateManager.GetOrAddAsync<IReliableDictionary<Guid, Drive>>("Drives");
+            await LoadDrive();
 
             while (true)
             {
                 cancellationToken.ThrowIfCancellationRequested();
 
-                using (var tx = this.StateManager.CreateTransaction())
+                using (var t = this.StateManager.CreateTransaction())
                 {
-                    var result = await myDictionary.TryGetValueAsync(tx, "Counter");
+                    var enumm = await drives.CreateEnumerableAsync(t);
+                    if (await drives.GetCountAsync(t) > 0)
+                    {
+                        using (var pom = enumm.GetAsyncEnumerator())
+                        {
 
-                    ServiceEventSource.Current.ServiceMessage(this.Context, "Current Counter Value: {0}",
-                        result.HasValue ? result.Value.ToString() : "Value does not exist.");
+                            while (await pom.MoveNextAsync(default(CancellationToken)))
+                            {
+                                if (!pom.Current.Value.Accepted || pom.Current.Value.IsFinished)
+                                {
+                                    continue;
+                                }
+                                else if (pom.Current.Value.Accepted && pom.Current.Value.TimeToDriverArrivalSeconds > 0)
+                                {
+                                    pom.Current.Value.TimeToDriverArrivalSeconds--;
+                                }
+                                else if (pom.Current.Value.Accepted && pom.Current.Value.TimeToDriverArrivalSeconds == 0 && pom.Current.Value.TimeToEndTripInSeconds > 0)
+                                {
+                                    pom.Current.Value.TimeToEndTripInSeconds--;
+                                }
+                                else if (pom.Current.Value.IsFinished == false)
+                                {
+                                    pom.Current.Value.IsFinished = true;
+                                   
+                                    await driveRepo.FinishDrive(pom.Current.Value.IdDrive);
 
-                    await myDictionary.AddOrUpdateAsync(tx, "Counter", 0, (key, value) => ++value);
-
-                    // If an exception is thrown before calling CommitAsync, the transaction aborts, all changes are 
-                    // discarded, and nothing is saved to the secondary replicas.
-                    await tx.CommitAsync();
+                                }
+                                await drives.SetAsync(t, pom.Current.Key, pom.Current.Value);
+                            }
+                        }
+                    }
+                    await t.CommitAsync();
                 }
 
                 await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
             }
+
+            //  var myDictionary = await this.StateManager.GetOrAddAsync<IReliableDictionary<string, long>>("myDictionary");
+
+            /*  while (true)
+              {
+                  cancellationToken.ThrowIfCancellationRequested();
+
+                  using (var tx = this.StateManager.CreateTransaction())
+                  {
+                      var result = await myDictionary.TryGetValueAsync(tx, "Counter");
+
+                      ServiceEventSource.Current.ServiceMessage(this.Context, "Current Counter Value: {0}",
+                          result.HasValue ? result.Value.ToString() : "Value does not exist.");
+
+                      await myDictionary.AddOrUpdateAsync(tx, "Counter", 0, (key, value) => ++value);
+
+                      await tx.CommitAsync();
+                  }
+
+                  await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
+              }*/
         }
     }
 }
