@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DriveService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+87b4e7b4ea464838b60c851264fff780524ce5cc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cd65f4eddfb35bb45ae2039412bf0b121b062ab8")]
 [assembly: System.Reflection.AssemblyProductAttribute("DriveService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DriveService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

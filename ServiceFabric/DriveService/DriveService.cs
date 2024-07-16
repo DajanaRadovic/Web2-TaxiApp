@@ -94,9 +94,40 @@ namespace DriveService
             }
         }
 
-        public Task<Drive> AcceptDriveDriver(Guid idRide, Guid idDriver)
+        public async Task<Drive> AcceptDriveDriver(Guid idRide, Guid idDriver)
         {
-            throw new NotImplementedException();
+            var drive = await this.StateManager.GetOrAddAsync<IReliableDictionary<Guid, Drive>>("Drives");
+            Guid compare = new Guid("00000000-0000-0000-0000-000000000000");
+            try
+            {
+                using (var t = StateManager.CreateTransaction())
+                {
+                    ConditionalValue<Drive> res = await drive.TryGetValueAsync(t, idRide);
+
+                    if (res.HasValue && res.Value.IdDriver == compare)
+                    {
+                        // azuriranje 
+                        Drive accept = res.Value;
+                        accept.TimeToEndTripInSeconds = 60;
+                        accept.IdDriver = idDriver;
+                        accept.Accepted = true;
+                        await drive.SetAsync(t, accept.IdRider, accept);
+                        if (await driveRepo.Update(idDriver, idRide))
+                        {
+                            await t.CommitAsync();
+                            return accept;
+                        }
+                        else return null;
+                    }
+                    else return null;
+
+                }
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<List<Drive>> GetAllNotRatedRides()
@@ -129,14 +160,62 @@ namespace DriveService
             }
         }
 
-        public Task<Drive> GetCurrentDriving(Guid id)
+        public async Task<Drive> GetCurrentDriving(Guid id)
         {
-            throw new NotImplementedException();
+            var drive = await this.StateManager.GetOrAddAsync<IReliableDictionary<Guid, Drive>>("Drives");
+            try
+            {
+                using (var t = StateManager.CreateTransaction())
+                {
+
+                    var enumm = await drive.CreateEnumerableAsync(t);
+
+                    using (var pom = enumm.GetAsyncEnumerator())
+                    {
+                        while (await pom.MoveNextAsync(default(CancellationToken)))
+                        {
+                            if ((pom.Current.Value.IdRider == id && pom.Current.Value.IsFinished == false))
+                            {
+                                return pom.Current.Value;
+                            }
+                        }
+                    }
+                }
+                return null;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public Task<Drive> GetCurrentRide(Guid id)
+        public async Task<Drive> GetCurrentRide(Guid id)
         {
-            throw new NotImplementedException();
+            var drive = await this.StateManager.GetOrAddAsync<IReliableDictionary<Guid, Drive>>("Drives");
+            try
+            {
+                using (var t = StateManager.CreateTransaction())
+                {
+
+                    var enumm = await drive.CreateEnumerableAsync(t);
+
+                    using (var pom = enumm.GetAsyncEnumerator())
+                    {
+                        while (await pom.MoveNextAsync(default(CancellationToken)))
+                        {
+                            if ((pom.Current.Value.IdRider == id && pom.Current.Value.IsFinished == false))
+                            {
+                                return pom.Current.Value;
+                            }
+                        }
+                    }
+                }
+                return null;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<Drive> GetCurrentRideDriver(Guid id)
@@ -168,14 +247,69 @@ namespace DriveService
             }
         }
 
-        public Task<List<Drive>> GetDrives()
+        public async Task<List<Drive>> GetDrives()
         {
-            throw new NotImplementedException();
+            var drives = await this.StateManager.GetOrAddAsync<IReliableDictionary<Guid, Drive>>("Drives");
+            List<Drive> list = new List<Drive>();
+            Guid compare = new Guid("00000000-0000-0000-0000-000000000000");
+            try
+            {
+                using (var t = StateManager.CreateTransaction())
+                {
+
+                    var enumm = await drives.CreateEnumerableAsync(t);
+
+                    using (var pom = enumm.GetAsyncEnumerator())
+                    {
+                        while (await pom.MoveNextAsync(default(CancellationToken)))
+                        {
+                            if (pom.Current.Value.IdDriver == compare)
+                            {
+                                list.Add(pom.Current.Value);
+                            }
+                        }
+                    }
+                    await t.CommitAsync();
+                }
+
+                return list;
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public Task<List<Drive>> GetRidesAdmin()
+        public async Task<List<Drive>> GetRidesAdmin()
         {
-            throw new NotImplementedException();
+            var drives = await this.StateManager.GetOrAddAsync<IReliableDictionary<Guid, Drive>>("Drives");
+            List<Drive> list = new List<Drive>();
+            try
+            {
+                using (var t = StateManager.CreateTransaction())
+                {
+
+                    var enumm = await drives.CreateEnumerableAsync(t);
+
+                    using (var pom = enumm.GetAsyncEnumerator())
+                    {
+                        while (await pom.MoveNextAsync(default(CancellationToken)))
+                        {
+
+                            list.Add(pom.Current.Value);
+                        }
+                    }
+                    await t.CommitAsync();
+                }
+
+                return list;
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public Task<List<Drive>> GetRidesForDriver(Guid idDriver)
@@ -183,9 +317,37 @@ namespace DriveService
             throw new NotImplementedException();
         }
 
-        public Task<List<Drive>> GetRidesForRider(Guid idDriver)
+        public async Task<List<Drive>> GetRidesForRider(Guid idDriver)
         {
-            throw new NotImplementedException();
+            var drives = await this.StateManager.GetOrAddAsync<IReliableDictionary<Guid, Drive>>("Drives");
+            List<Drive> list = new List<Drive>();
+            try
+            {
+                using (var t = StateManager.CreateTransaction())
+                {
+
+                    var enumm = await drives.CreateEnumerableAsync(t);
+
+                    using (var pom = enumm.GetAsyncEnumerator())
+                    {
+                        while (await pom.MoveNextAsync(default(CancellationToken)))
+                        {
+                            if (pom.Current.Value.IdRider == idDriver && pom.Current.Value.IsFinished)
+                            {
+                                list.Add(pom.Current.Value);
+                            }
+                        }
+                    }
+                    await t.CommitAsync();
+                }
+
+                return list;
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<bool> SubmitFeedback(Guid idTrip, int rating)
