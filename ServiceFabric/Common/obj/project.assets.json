@@ -6792,11 +6792,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\TAXI-APP\\ServiceFabric\\Common\\Common.csproj",
+      "projectUniqueName": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Common.csproj",
       "projectName": "Common",
-      "projectPath": "D:\\TAXI-APP\\ServiceFabric\\Common\\Common.csproj",
+      "projectPath": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Common.csproj",
       "packagesPath": "C:\\Users\\Milijana\\.nuget\\packages\\",
-      "outputPath": "D:\\TAXI-APP\\ServiceFabric\\Common\\obj\\",
+      "outputPath": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

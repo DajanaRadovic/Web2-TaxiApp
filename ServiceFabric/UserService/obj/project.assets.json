@@ -720,11 +720,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\TAXI-APP\\ServiceFabric\\UserService\\UserService.csproj",
+      "projectUniqueName": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\UserService\\UserService.csproj",
       "projectName": "UserService",
-      "projectPath": "D:\\TAXI-APP\\ServiceFabric\\UserService\\UserService.csproj",
+      "projectPath": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\UserService\\UserService.csproj",
       "packagesPath": "C:\\Users\\Milijana\\.nuget\\packages\\",
-      "outputPath": "D:\\TAXI-APP\\ServiceFabric\\UserService\\obj\\",
+      "outputPath": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\UserService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

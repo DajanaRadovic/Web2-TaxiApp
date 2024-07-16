@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pQGb5B3rYvDiw5ic9quOgudq8hODkxZM9Iws+Wa7U7954jZ6CAml5gKGs/uwA65usLAwN/n6CFXf5aopHVNDcA==",
+  "dgSpecHash": "0T8JU8SfmJOKznTEw8dZVgg4W+WHb1qiakVwxek+paGB80JItueSevXb5LZFENeBiCLA+rk18qTp4ROAPzrkVQ==",
   "success": true,
-  "projectFilePath": "D:\\TAXI-APP\\ServiceFabric\\WebService\\WebService.csproj",
+  "projectFilePath": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\WebService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

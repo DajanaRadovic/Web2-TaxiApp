@@ -1,12 +1,71 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\TAXI-APP\\ServiceFabric\\",
-  "Documents": [],
+  "WorkspaceRootPath": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{72A1D72F-031C-4E06-98AB-2F53F60398FE}|DriveService\\DriveService.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\driveservice\\driveservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{72A1D72F-031C-4E06-98AB-2F53F60398FE}|DriveService\\DriveService.csproj|solutionrelative:driveservice\\driveservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{72A1D72F-031C-4E06-98AB-2F53F60398FE}|DriveService\\DriveService.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\driveservice\\driverepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{72A1D72F-031C-4E06-98AB-2F53F60398FE}|DriveService\\DriveService.csproj|solutionrelative:driveservice\\driverepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\common\\interface\\irateable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|solutionrelative:common\\interface\\irateable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 176,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IRateable.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Interface\\IRateable.cs",
+              "RelativeDocumentMoniker": "Common\\Interface\\IRateable.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Interface\\IRateable.cs",
+              "RelativeToolTip": "Common\\Interface\\IRateable.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-16T11:02:16.317Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DriveRepository.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\DriveService\\DriveRepository.cs",
+              "RelativeDocumentMoniker": "DriveService\\DriveRepository.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\DriveService\\DriveRepository.cs",
+              "RelativeToolTip": "DriveService\\DriveRepository.cs",
+              "ViewState": "AQIAACoAAAAAAAAAAAAowAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-16T10:52:42.967Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DriveService.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\DriveService\\DriveService.cs",
+              "RelativeDocumentMoniker": "DriveService\\DriveService.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\DriveService\\DriveService.cs",
+              "RelativeToolTip": "DriveService\\DriveService.cs",
+              "ViewState": "AQIAACEAAAAAAAAAAAAYwCwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-16T09:59:55.698Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

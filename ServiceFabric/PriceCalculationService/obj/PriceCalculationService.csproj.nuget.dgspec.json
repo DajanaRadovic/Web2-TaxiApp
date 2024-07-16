@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\TAXI-APP\\ServiceFabric\\PriceCalculationService\\PriceCalculationService.csproj": {}
+    "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\PriceCalculationService\\PriceCalculationService.csproj": {}
   },
   "projects": {
-    "D:\\TAXI-APP\\ServiceFabric\\PriceCalculationService\\PriceCalculationService.csproj": {
+    "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\PriceCalculationService\\PriceCalculationService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TAXI-APP\\ServiceFabric\\PriceCalculationService\\PriceCalculationService.csproj",
+        "projectUniqueName": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\PriceCalculationService\\PriceCalculationService.csproj",
         "projectName": "PriceCalculationService",
-        "projectPath": "D:\\TAXI-APP\\ServiceFabric\\PriceCalculationService\\PriceCalculationService.csproj",
+        "projectPath": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\PriceCalculationService\\PriceCalculationService.csproj",
         "packagesPath": "C:\\Users\\Milijana\\.nuget\\packages\\",
-        "outputPath": "D:\\TAXI-APP\\ServiceFabric\\PriceCalculationService\\obj\\",
+        "outputPath": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\PriceCalculationService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

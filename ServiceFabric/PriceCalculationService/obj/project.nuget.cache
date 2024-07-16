@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8uUDEHZ5Y3tUgs5EeV/pTzbJklaozC1d7Pp1OIv3iSZRXpnsw9Pl2lZsn0i461/c+cDnhoe+jeYOCqIyWXd3xA==",
+  "dgSpecHash": "6gUwC6EMPBh0PQYqtkzjPNUMCcmCezk0cXONmQGWk4BZRKe4XKVTc+BFzLwXOVqVqzLPXiV75FAPrDWgXqsPlw==",
   "success": true,
-  "projectFilePath": "D:\\TAXI-APP\\ServiceFabric\\PriceCalculationService\\PriceCalculationService.csproj",
+  "projectFilePath": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\PriceCalculationService\\PriceCalculationService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.servicefabric\\10.1.1951\\microsoft.servicefabric.10.1.1951.nupkg.sha512",
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.servicefabric.data\\7.1.1951\\microsoft.servicefabric.data.7.1.1951.nupkg.sha512",

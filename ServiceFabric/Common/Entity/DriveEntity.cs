@@ -34,19 +34,19 @@ namespace Common.Entity
 
         public DriveEntity() { }
 
-        public DriveEntity(Guid userId, Guid idDriver, Guid idDrive, string fromLocation, string toLocation, double price, bool accepted, bool isFinished, bool isRated, int minutes, Guid tId)
+        public DriveEntity(Guid userId, Guid idDriver, Guid tId, string fromLocation, string toLocation, double price, bool accepted,int minutes)
         {
             IdRider = userId;
             IdDriver = idDriver;
-            IdDrive = idDrive;
+            IdDrive = tId;
             FromLocation = fromLocation;
             ToLocation = toLocation;
             Price = price;
             Accepted = accepted;
             TimeToDriverArrivalSeconds = minutes;
             TimeToEndTripInSeconds = 0;
-            IsFinished = isFinished;
-            IsRated = isRated;
+            IsFinished = false;
+            IsRated = false ;
             RowKey = tId.ToString();
             PartitionKey = tId.ToString();
         }

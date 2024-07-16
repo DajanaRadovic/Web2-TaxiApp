@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\TAXI-APP\\ServiceFabric\\WebService\\WebService.csproj": {}
+    "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\WebService.csproj": {}
   },
   "projects": {
-    "D:\\TAXI-APP\\ServiceFabric\\WebService\\WebService.csproj": {
+    "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\WebService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\TAXI-APP\\ServiceFabric\\WebService\\WebService.csproj",
+        "projectUniqueName": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\WebService.csproj",
         "projectName": "WebService",
-        "projectPath": "D:\\TAXI-APP\\ServiceFabric\\WebService\\WebService.csproj",
+        "projectPath": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\WebService.csproj",
         "packagesPath": "C:\\Users\\Milijana\\.nuget\\packages\\",
-        "outputPath": "D:\\TAXI-APP\\ServiceFabric\\WebService\\obj\\",
+        "outputPath": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
