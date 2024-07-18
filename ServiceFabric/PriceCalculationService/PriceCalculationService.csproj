@@ -15,4 +15,8 @@
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="7.1.1951" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,5 @@
-﻿using Common.FileOperation;
+﻿using Common.DTOs;
+using Common.FileOperation;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,8 @@ namespace Common.Model
         [DataMember]
         public string Address { get; set; }
         [DataMember]
-        public IFormFile Image { get; set; }
+        //  public IFormFile Image { get; set; }
+        public UploadDTO Image { get; set; }
 
         public Network(UpdateUser user)
         {
@@ -77,7 +79,7 @@ namespace Common.Model
 
             if (user.Image != null)
             {
-                Image = (IFormFile)FileHelper.UploadFileOverNetwork(user.Image);
+               // Image = (IFormFile)FileHelper.UploadFileOverNetwork(user.Image);
             }
 
             if (user.Password != null)

@@ -57,7 +57,7 @@
             },
             "Microsoft.ServiceFabric.Services.Remoting": {
               "target": "Package",
-              "version": "[7.1.2175, )"
+              "version": "[7.1.1951, )"
             },
             "Microsoft.TestPlatform.ObjectModel": {
               "target": "Package",

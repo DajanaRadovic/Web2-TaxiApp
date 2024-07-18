@@ -1,1 +1,2 @@
 D:\proba taxi\ServiceFabric\ServiceFabric\obj\x64\Debug\ServiceFabric.sfproj.CoreCompileInputs.cache
+D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\ServiceFabric\obj\x64\Debug\ServiceFabric.sfproj.CoreCompileInputs.cache

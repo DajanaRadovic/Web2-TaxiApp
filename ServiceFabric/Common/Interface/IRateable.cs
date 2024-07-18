@@ -13,6 +13,6 @@ namespace Common.Interface
     public interface IRateable:IService
     {
         [OperationContract]
-        Task<bool> AddRating(Guid driverId, int rating);
+        Task<bool> AddRating(Guid idDriver, int rating);
     }
 }

@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
-    <PackageReference Include="Microsoft.ServiceFabric.Services.Remoting" Version="7.1.2175" />
+    <PackageReference Include="Microsoft.ServiceFabric.Services.Remoting" Version="7.1.1951" />
     <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="17.10.0" />
     <PackageReference Include="System.ServiceModel.Primitives" Version="8.0.0" />
     <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />

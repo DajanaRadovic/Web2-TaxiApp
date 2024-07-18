@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "YSrx7B7Yuaya0vcFN3mr+dbLDMmfKXmOs8YGa9cnIeSXNs9lOqfSIJd1BKL8lby6kjvqivGxPP1I5hO6J/roUA==",
-  "success": false,
+  "dgSpecHash": "IudBPN1QiyGiMRs9qxx7RsEx6swgeJYsM5SXbXNjyIqfj/z12gSEMiAZsc3B6uEPzUWN/dxyxr0ks2lX4NuzyA==",
+  "success": true,
   "projectFilePath": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\DriveService\\DriveService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
@@ -10,14 +10,14 @@
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
-    "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.servicefabric\\10.1.2175\\microsoft.servicefabric.10.1.2175.nupkg.sha512",
+    "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.servicefabric\\10.1.1951\\microsoft.servicefabric.10.1.1951.nupkg.sha512",
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.servicefabric.data\\7.1.1951\\microsoft.servicefabric.data.7.1.1951.nupkg.sha512",
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.servicefabric.data.extensions\\7.1.1951\\microsoft.servicefabric.data.extensions.7.1.1951.nupkg.sha512",
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.servicefabric.data.interfaces\\7.1.1951\\microsoft.servicefabric.data.interfaces.7.1.1951.nupkg.sha512",
-    "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.servicefabric.diagnostics.internal\\7.1.2175\\microsoft.servicefabric.diagnostics.internal.7.1.2175.nupkg.sha512",
-    "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.servicefabric.fabrictransport.internal\\7.1.2175\\microsoft.servicefabric.fabrictransport.internal.7.1.2175.nupkg.sha512",
+    "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.servicefabric.diagnostics.internal\\7.1.1951\\microsoft.servicefabric.diagnostics.internal.7.1.1951.nupkg.sha512",
+    "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.servicefabric.fabrictransport.internal\\7.1.1951\\microsoft.servicefabric.fabrictransport.internal.7.1.1951.nupkg.sha512",
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.servicefabric.services\\7.1.1951\\microsoft.servicefabric.services.7.1.1951.nupkg.sha512",
-    "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.servicefabric.services.remoting\\7.1.2175\\microsoft.servicefabric.services.remoting.7.1.2175.nupkg.sha512",
+    "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.servicefabric.services.remoting\\7.1.1951\\microsoft.servicefabric.services.remoting.7.1.1951.nupkg.sha512",
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.testplatform.objectmodel\\17.10.0\\microsoft.testplatform.objectmodel.17.10.0.nupkg.sha512",
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\Milijana\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
@@ -143,15 +143,5 @@
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.3\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.3.nupkg.sha512",
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.3\\microsoft.netcore.app.runtime.win-x64.8.0.3.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1107",
-      "level": "Error",
-      "message": "Version conflict detected for Microsoft.ServiceFabric.Diagnostics.Internal. Install/reference Microsoft.ServiceFabric.Diagnostics.Internal 7.1.2175 directly to project DriveService to resolve this issue. \r\n DriveService -> Common -> Microsoft.ServiceFabric.Services.Remoting 7.1.2175 -> Microsoft.ServiceFabric.Diagnostics.Internal (= 7.1.2175) \r\n DriveService -> Microsoft.ServiceFabric.Services 7.1.1951 -> Microsoft.ServiceFabric.Diagnostics.Internal (= 7.1.1951).",
-      "libraryId": "Microsoft.ServiceFabric.Diagnostics.Internal",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  "logs": []
 }
