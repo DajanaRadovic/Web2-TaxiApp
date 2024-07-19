@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Common.Interface
 {
-    internal interface IEmail
+    public interface IEmail
     {
+        Task SendEmail(string email, string subject, string message);
     }
 }

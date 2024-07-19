@@ -11,7 +11,7 @@ namespace Common.Model
 {
     public class Email : IEmail
     {
-        public Task EmailSendAsync(string email, string subject, string message)
+        public Task SendEmail(string email, string subject, string message)
         {
             var client = new SmtpClient("smtp.uns.ac.rs", 587)
             {

@@ -3,8 +3,84 @@
   "WorkspaceRootPath": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\webservice\\controllers\\ridercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|solutionrelative:webservice\\controllers\\ridercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\common\\model\\location.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|solutionrelative:common\\model\\location.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\common\\model\\drive.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|solutionrelative:common\\model\\drive.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\common\\enums\\roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|solutionrelative:common\\enums\\roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\common\\interface\\icalculation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|solutionrelative:common\\interface\\icalculation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\webservice\\interfacewebservice\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|solutionrelative:webservice\\interfacewebservice\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\webservice\\interfacewebservice\\idriverservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|solutionrelative:webservice\\interfacewebservice\\idriverservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\common\\interface\\iuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|solutionrelative:common\\interface\\iuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\webservice\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|solutionrelative:webservice\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\webservice\\helpers\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|solutionrelative:webservice\\helpers\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\webservice\\controllers\\drivercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|solutionrelative:webservice\\controllers\\drivercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\webservice\\helpers\\driverservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|solutionrelative:webservice\\helpers\\driverservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\webservice\\webservice.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|solutionrelative:webservice\\webservice.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5D9CA728-A13E-4F04-86FF-472FD6F356EC}|UserService\\UserService.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\userservice\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5D9CA728-A13E-4F04-86FF-472FD6F356EC}|UserService\\UserService.csproj|solutionrelative:userservice\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\common\\model\\email.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|solutionrelative:common\\model\\email.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\common\\interface\\iemail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|solutionrelative:common\\interface\\iemail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\webservice\\packageroot\\servicemanifest.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|solutionrelative:webservice\\packageroot\\servicemanifest.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\webservice\\helpers\\validationservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|solutionrelative:webservice\\helpers\\validationservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\webservice\\serviceeventsource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|solutionrelative:webservice\\serviceeventsource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\webservice\\webservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4283F58-7B7D-49D5-9B7F-E504055AC878}|WebService\\WebService.csproj|solutionrelative:webservice\\webservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5D9CA728-A13E-4F04-86FF-472FD6F356EC}|UserService\\UserService.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\userservice\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -39,20 +115,12 @@
       "RelativeMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|solutionrelative:common\\interface\\irateable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\common\\interface\\iuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|solutionrelative:common\\interface\\iuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\common\\dtos\\authenticateduserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|solutionrelative:common\\dtos\\authenticateduserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\common\\dtos\\userdetailsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|solutionrelative:common\\dtos\\userdetailsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\common\\enums\\roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|solutionrelative:common\\enums\\roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0C4B899E-A094-4643-81AD-77A567C3E5DA}|Common\\Common.csproj|d:\\taxi-app\\web2-taxiapp\\servicefabric\\common\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -106,11 +174,264 @@
       "DocumentGroups": [
         {
           "DockedWidth": 176,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Location.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Model\\Location.cs",
+              "RelativeDocumentMoniker": "Common\\Model\\Location.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Model\\Location.cs",
+              "RelativeToolTip": "Common\\Model\\Location.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T16:17:25.7Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Drive.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Model\\Drive.cs",
+              "RelativeDocumentMoniker": "Common\\Model\\Drive.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Model\\Drive.cs",
+              "RelativeToolTip": "Common\\Model\\Drive.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T16:17:22.889Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RiderController.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\Controllers\\RiderController.cs",
+              "RelativeDocumentMoniker": "WebService\\Controllers\\RiderController.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\Controllers\\RiderController.cs",
+              "RelativeToolTip": "WebService\\Controllers\\RiderController.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAkwBsAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T16:12:35.079Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ICalculation.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Interface\\ICalculation.cs",
+              "RelativeDocumentMoniker": "Common\\Interface\\ICalculation.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Interface\\ICalculation.cs",
+              "RelativeToolTip": "Common\\Interface\\ICalculation.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T16:14:28.664Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IUser.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Interface\\IUser.cs",
+              "RelativeDocumentMoniker": "Common\\Interface\\IUser.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Interface\\IUser.cs",
+              "RelativeToolTip": "Common\\Interface\\IUser.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAACQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T14:31:44.653Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Roles.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Enums\\Roles.cs",
+              "RelativeDocumentMoniker": "Common\\Enums\\Roles.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Enums\\Roles.cs",
+              "RelativeToolTip": "Common\\Enums\\Roles.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-17T14:16:03.562Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "WebService\\Controllers\\UserController.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\Controllers\\UserController.cs",
+              "RelativeToolTip": "WebService\\Controllers\\UserController.cs",
+              "ViewState": "AQIAAEcAAAAAAAAAAAAgwGYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-18T13:16:05.757Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\InterfaceWebService\\IUserService.cs",
+              "RelativeDocumentMoniker": "WebService\\InterfaceWebService\\IUserService.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\InterfaceWebService\\IUserService.cs",
+              "RelativeToolTip": "WebService\\InterfaceWebService\\IUserService.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAhwAsAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-18T14:00:03.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "IDriverService.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\InterfaceWebService\\IDriverService.cs",
+              "RelativeDocumentMoniker": "WebService\\InterfaceWebService\\IDriverService.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\InterfaceWebService\\IDriverService.cs",
+              "RelativeToolTip": "WebService\\InterfaceWebService\\IDriverService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T14:15:04.303Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\Helpers\\UserService.cs",
+              "RelativeDocumentMoniker": "WebService\\Helpers\\UserService.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\Helpers\\UserService.cs",
+              "RelativeToolTip": "WebService\\Helpers\\UserService.cs",
+              "ViewState": "AQIAAFwAAAAAAAAAAAAgwIwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-18T14:01:17.395Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "DriverController.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\Controllers\\DriverController.cs",
+              "RelativeDocumentMoniker": "WebService\\Controllers\\DriverController.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\Controllers\\DriverController.cs",
+              "RelativeToolTip": "WebService\\Controllers\\DriverController.cs",
+              "ViewState": "AQIAACsAAAAAAAAAAAAQwEAAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T14:12:46.987Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "DriverService.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\Helpers\\DriverService.cs",
+              "RelativeDocumentMoniker": "WebService\\Helpers\\DriverService.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\Helpers\\DriverService.cs",
+              "RelativeToolTip": "WebService\\Helpers\\DriverService.cs",
+              "ViewState": "AQIAACwAAAAAAAAAAAAUwDwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T14:17:38.974Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "WebService.csproj",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\WebService.csproj",
+              "RelativeDocumentMoniker": "WebService\\WebService.csproj",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\WebService.csproj",
+              "RelativeToolTip": "WebService\\WebService.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-07-18T13:17:17.042Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\UserService\\UserRepository.cs",
+              "RelativeDocumentMoniker": "UserService\\UserRepository.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\UserService\\UserRepository.cs",
+              "RelativeToolTip": "UserService\\UserRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-17T13:07:55.454Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ServiceManifest.xml",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\PackageRoot\\ServiceManifest.xml",
+              "RelativeDocumentMoniker": "WebService\\PackageRoot\\ServiceManifest.xml",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\PackageRoot\\ServiceManifest.xml",
+              "RelativeToolTip": "WebService\\PackageRoot\\ServiceManifest.xml",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAB0AAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2024-07-19T11:06:27.877Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Email.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Model\\Email.cs",
+              "RelativeDocumentMoniker": "Common\\Model\\Email.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Model\\Email.cs",
+              "RelativeToolTip": "Common\\Model\\Email.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA0AAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T11:11:56.884Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ValidationServices.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\Helpers\\ValidationServices.cs",
+              "RelativeDocumentMoniker": "WebService\\Helpers\\ValidationServices.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\Helpers\\ValidationServices.cs",
+              "RelativeToolTip": "WebService\\Helpers\\ValidationServices.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACcAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-18T13:43:22.733Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "IEmail.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Interface\\IEmail.cs",
+              "RelativeDocumentMoniker": "Common\\Interface\\IEmail.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Interface\\IEmail.cs",
+              "RelativeToolTip": "Common\\Interface\\IEmail.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-18T13:18:17.022Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ServiceEventSource.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\ServiceEventSource.cs",
+              "RelativeDocumentMoniker": "WebService\\ServiceEventSource.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\ServiceEventSource.cs",
+              "RelativeToolTip": "WebService\\ServiceEventSource.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-18T13:11:14.404Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "WebService.cs",
+              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\WebService.cs",
+              "RelativeDocumentMoniker": "WebService\\WebService.cs",
+              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\WebService.cs",
+              "RelativeToolTip": "WebService\\WebService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-18T13:10:37.743Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Model\\User.cs",
               "RelativeDocumentMoniker": "Common\\Model\\User.cs",
@@ -122,7 +443,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 20,
               "Title": "UserService.cs",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\UserService\\UserService.cs",
               "RelativeDocumentMoniker": "UserService\\UserService.cs",
@@ -130,12 +451,11 @@
               "RelativeToolTip": "UserService\\UserService.cs",
               "ViewState": "AQIAAE8BAAAAAAAAAAAowGkBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-17T14:17:32.965Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-17T14:17:32.965Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 24,
               "Title": "UploadDTO.cs",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\DTOs\\UploadDTO.cs",
               "RelativeDocumentMoniker": "Common\\DTOs\\UploadDTO.cs",
@@ -147,20 +467,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\UserService\\UserRepository.cs",
-              "RelativeDocumentMoniker": "UserService\\UserRepository.cs",
-              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\UserService\\UserRepository.cs",
-              "RelativeToolTip": "UserService\\UserRepository.cs",
-              "ViewState": "AQIAAIIAAAAAAAAAAAAcwCwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-17T13:07:55.454Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 23,
               "Title": "Network.cs",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Model\\Network.cs",
               "RelativeDocumentMoniker": "Common\\Model\\Network.cs",
@@ -172,7 +479,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 22,
               "Title": "FullUserMapper.cs",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Mapper\\FullUserMapper.cs",
               "RelativeDocumentMoniker": "Common\\Mapper\\FullUserMapper.cs",
@@ -184,7 +491,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 26,
               "Title": "DriverStatusDTO.cs",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\DTOs\\DriverStatusDTO.cs",
               "RelativeDocumentMoniker": "Common\\DTOs\\DriverStatusDTO.cs",
@@ -196,7 +503,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 21,
               "Title": "UserMapper.cs",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Mapper\\UserMapper.cs",
               "RelativeDocumentMoniker": "Common\\Mapper\\UserMapper.cs",
@@ -204,12 +511,11 @@
               "RelativeToolTip": "Common\\Mapper\\UserMapper.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-17T17:11:42.538Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-17T17:11:42.538Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 27,
               "Title": "IRateable.cs",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Interface\\IRateable.cs",
               "RelativeDocumentMoniker": "Common\\Interface\\IRateable.cs",
@@ -221,19 +527,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "IUser.cs",
-              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Interface\\IUser.cs",
-              "RelativeDocumentMoniker": "Common\\Interface\\IUser.cs",
-              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Interface\\IUser.cs",
-              "RelativeToolTip": "Common\\Interface\\IUser.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAQwBgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-17T14:01:19.657Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 28,
               "Title": "AuthenticatedUserDTO.cs",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\DTOs\\AuthenticatedUserDTO.cs",
               "RelativeDocumentMoniker": "Common\\DTOs\\AuthenticatedUserDTO.cs",
@@ -245,7 +539,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 29,
               "Title": "UserDetailsDTO.cs",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\DTOs\\UserDetailsDTO.cs",
               "RelativeDocumentMoniker": "Common\\DTOs\\UserDetailsDTO.cs",
@@ -257,19 +551,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Roles.cs",
-              "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Enums\\Roles.cs",
-              "RelativeDocumentMoniker": "Common\\Enums\\Roles.cs",
-              "ToolTip": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Enums\\Roles.cs",
-              "RelativeToolTip": "Common\\Enums\\Roles.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-17T14:16:03.562Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 30,
               "Title": "UserDTO.cs",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\DTOs\\UserDTO.cs",
               "RelativeDocumentMoniker": "Common\\DTOs\\UserDTO.cs",
@@ -281,7 +563,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 31,
               "Title": "AcceptRideDTO.cs",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\DTOs\\AcceptRideDTO.cs",
               "RelativeDocumentMoniker": "Common\\DTOs\\AcceptRideDTO.cs",
@@ -293,7 +575,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 32,
               "Title": "LoginDTO.cs",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\DTOs\\LoginDTO.cs",
               "RelativeDocumentMoniker": "Common\\DTOs\\LoginDTO.cs",
@@ -305,7 +587,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 33,
               "Title": "FinishRideDTO.cs",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\DTOs\\FinishRideDTO.cs",
               "RelativeDocumentMoniker": "Common\\DTOs\\FinishRideDTO.cs",
@@ -317,7 +599,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 35,
               "Title": "FileHelper.cs",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\FileOperation\\FileHelper.cs",
               "RelativeDocumentMoniker": "Common\\FileOperation\\FileHelper.cs",
@@ -329,7 +611,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 34,
               "Title": "DriveRepository.cs",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\DriveService\\DriveRepository.cs",
               "RelativeDocumentMoniker": "DriveService\\DriveRepository.cs",
@@ -341,7 +623,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 37,
               "Title": "StatusEnum.cs",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Enums\\StatusEnum.cs",
               "RelativeDocumentMoniker": "Common\\Enums\\StatusEnum.cs",
@@ -353,7 +635,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 36,
               "Title": "Common.csproj",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\Common\\Common.csproj",
               "RelativeDocumentMoniker": "Common\\Common.csproj",
@@ -361,11 +643,12 @@
               "RelativeToolTip": "Common\\Common.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-07-17T12:59:10.733Z"
+              "WhenOpened": "2024-07-17T12:59:10.733Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 38,
               "Title": "UserService.csproj",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\UserService\\UserService.csproj",
               "RelativeDocumentMoniker": "UserService\\UserService.csproj",
@@ -373,11 +656,12 @@
               "RelativeToolTip": "UserService\\UserService.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-07-17T12:59:01.036Z"
+              "WhenOpened": "2024-07-17T12:59:01.036Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 39,
               "Title": "PriceCalculationService.csproj",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\PriceCalculationService\\PriceCalculationService.csproj",
               "RelativeDocumentMoniker": "PriceCalculationService\\PriceCalculationService.csproj",
@@ -385,11 +669,12 @@
               "RelativeToolTip": "PriceCalculationService\\PriceCalculationService.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-07-17T12:58:53.319Z"
+              "WhenOpened": "2024-07-17T12:58:53.319Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 40,
               "Title": "DriveService.csproj",
               "DocumentMoniker": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\DriveService\\DriveService.csproj",
               "RelativeDocumentMoniker": "DriveService\\DriveService.csproj",
@@ -397,7 +682,8 @@
               "RelativeToolTip": "DriveService\\DriveService.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-07-17T12:56:31.396Z"
+              "WhenOpened": "2024-07-17T12:56:31.396Z",
+              "EditorCaption": ""
             }
           ]
         }

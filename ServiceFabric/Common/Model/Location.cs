@@ -11,5 +11,7 @@ namespace Common.Model
         public string ToLocation { get; set; }//destination
         public string FromLocation { get; set; }
 
+        public Location() { }
+
     }
 }
