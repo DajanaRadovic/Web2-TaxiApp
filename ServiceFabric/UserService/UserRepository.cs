@@ -28,7 +28,7 @@ namespace UserService
         {
             try
             {
-                string connectionString = Environment.GetEnvironmentVariable("ConnectionString");
+                string connectionString = Environment.GetEnvironmentVariable("DataConnectionString");
                 Cloud = CloudStorageAccount.Parse(connectionString); 
 
                 BlobClient = Cloud.CreateCloudBlobClient();

@@ -328,6 +328,13 @@ D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTm
 D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTmp\Out\mscorrc.dll
 D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTmp\Out\msquic.dll
 D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTmp\Out\aspnetcorev2_inprocess.dll
+D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTmp\Out\Microsoft.IdentityModel.Abstractions.dll
+D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTmp\Out\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTmp\Out\Microsoft.IdentityModel.Logging.dll
+D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTmp\Out\Microsoft.IdentityModel.Protocols.dll
+D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTmp\Out\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTmp\Out\Microsoft.IdentityModel.Tokens.dll
 D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTmp\Out\Microsoft.OpenApi.dll
 D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTmp\Out\Microsoft.ServiceFabric.Internal.Strings.dll
 D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTmp\Out\Microsoft.ServiceFabric.Internal.dll
@@ -354,6 +361,7 @@ D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTm
 D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
 D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll
 D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTmp\Out\System.ServiceModel.Primitives.dll
 D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTmp\Out\Microsoft.WindowsAzure.Storage.dll
 D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\obj\Debug\net8.0\win-x64\PubTmp\Out\cs\Microsoft.TestPlatform.CoreUtilities.resources.dll

@@ -789,3 +789,11 @@ D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\bin\Debug\net8.0\win-x64\zh-Ha
 D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\bin\Debug\net8.0\win-x64\zh-Hant\System.ServiceModel.Primitives.resources.dll
 D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\bin\Debug\net8.0\win-x64\Common.dll
 D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\bin\Debug\net8.0\win-x64\Common.pdb
+D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\bin\Debug\net8.0\win-x64\Microsoft.IdentityModel.Abstractions.dll
+D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\bin\Debug\net8.0\win-x64\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\bin\Debug\net8.0\win-x64\Microsoft.IdentityModel.Logging.dll
+D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\bin\Debug\net8.0\win-x64\Microsoft.IdentityModel.Tokens.dll
+D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\bin\Debug\net8.0\win-x64\System.IdentityModel.Tokens.Jwt.dll
+D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\bin\Debug\net8.0\win-x64\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\bin\Debug\net8.0\win-x64\Microsoft.IdentityModel.Protocols.dll
+D:\TAXI-APP\Web2-TaxiApp\ServiceFabric\WebService\bin\Debug\net8.0\win-x64\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll

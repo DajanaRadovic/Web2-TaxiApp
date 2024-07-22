@@ -31,7 +31,7 @@ namespace UserService
         public UserService(StatefulServiceContext context)
             : base(context)
         {
-            userRepo = new UserRepository("UsersServiceFavric");
+            userRepo = new UserRepository("UsersServiceFabric");
         }
 
         public async Task<bool> AddNewUser(User user)

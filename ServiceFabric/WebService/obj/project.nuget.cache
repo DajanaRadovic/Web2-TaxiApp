@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "evvHV/RpH+vaojM2+L9OzUZZKzdhkR3udrDWrA6xggNLIM8tuJUhjYzmCTtGP5shVxmIJjttgUPjB8WFAWKOyw==",
+  "dgSpecHash": "4u2dZpWHoH2t/u7uq+7+WqpBtPF8yA7mAYraKx4FQ04rMlotcaRirh5tW9d+xJ2Wr5dbWF7jwqO9nURLvOLZCA==",
   "success": true,
   "projectFilePath": "D:\\TAXI-APP\\Web2-TaxiApp\\ServiceFabric\\WebService\\WebService.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.7\\microsoft.aspnetcore.authentication.jwtbearer.8.0.7.nupkg.sha512",
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.csharp\\4.3.0\\microsoft.csharp.4.3.0.nupkg.sha512",
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
@@ -12,6 +13,8 @@
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.identitymodel.abstractions\\8.0.0\\microsoft.identitymodel.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\8.0.0\\microsoft.identitymodel.jsonwebtokens.8.0.0.nupkg.sha512",
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.identitymodel.logging\\8.0.0\\microsoft.identitymodel.logging.8.0.0.nupkg.sha512",
+    "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.identitymodel.protocols\\7.1.2\\microsoft.identitymodel.protocols.7.1.2.nupkg.sha512",
+    "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\7.1.2\\microsoft.identitymodel.protocols.openidconnect.7.1.2.nupkg.sha512",
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.identitymodel.tokens\\8.0.0\\microsoft.identitymodel.tokens.8.0.0.nupkg.sha512",
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Milijana\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",

@@ -23,17 +23,52 @@ namespace DriveService
         {
             try
             {
-                string connectionString = Environment.GetEnvironmentVariable("ConnectionString");
+                string connectionString = Environment.GetEnvironmentVariable("DataConnectionString");
+                if (string.IsNullOrEmpty(connectionString))
+                {
+                    throw new InvalidOperationException("DataConnectionString environment variable is not set.");
+                }
+
+                Console.WriteLine("Connection string: " + connectionString);
                 Cloud = CloudStorageAccount.Parse(connectionString);
                 TableClient = Cloud.CreateCloudTableClient();
                 Drive = TableClient.GetTableReference(table);
-                Drive.CreateIfNotExistsAsync().Wait();
 
+                Console.WriteLine("Attempting to create table: " + table);
+                var result = Drive.CreateIfNotExistsAsync().Result;
+
+                if (result)
+                {
+                    Console.WriteLine("Table created successfully.");
+                }
+                else
+                {
+                    Console.WriteLine("Table already exists.");
+                }
+            }
+            catch (StorageException ex)
+            {
+                Console.WriteLine("StorageException: " + ex.Message);
+                throw;
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Exception: " + ex.Message);
                 throw;
             }
+            /*  try
+              {
+                  string connectionString = Environment.GetEnvironmentVariable("DataConnectionString");
+                  Cloud = CloudStorageAccount.Parse(connectionString);
+                  TableClient = Cloud.CreateCloudTableClient();
+                  Drive = TableClient.GetTableReference(table);
+                  Drive.CreateIfNotExistsAsync().Wait();
+
+              }
+              catch (Exception ex)
+              {
+                  throw;
+              }*/
         }
 
         public IEnumerable<DriveEntity> GetAllDrives()

@@ -5,10 +5,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.ServiceFabric.Services.Client;
 using Microsoft.ServiceFabric.Services.Remoting.Client;
+using System.Security.Claims;
 using System.Fabric;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.AccessControl;
+using System.Text;
 using System.Text.RegularExpressions;
 using WebService.Helpers;
 using WebService.InterfaceWebService;
@@ -46,7 +50,7 @@ namespace WebService.Controllers
                 var result = await _userService.RegisterUser(user);
                 if (result)
                 {
-                    return Ok($"Successfully registered new User: {user.Username}");
+                    return Ok($"Successfully registered: {user.Username}");
                 }
                 else
                 {
@@ -74,6 +78,74 @@ namespace WebService.Controllers
         }
 
         //OVDE IDE LOGIN
+        [HttpPost]
+        public async Task<IActionResult> Login([FromBody] LoginDTO user)
+        {
+            if (string.IsNullOrEmpty(user.Email) || !IsValidEmail(user.Email)) return BadRequest("Invalid email format");
+            if (string.IsNullOrEmpty(user.Password)) return BadRequest("Password cannot be null or empty");
+
+            try
+            {
+                var fabricClient = new FabricClient();
+                AuthenticatedUserDTO result = null; // Initialize result to null
+
+                var list = await fabricClient.QueryManager.GetPartitionListAsync(new Uri("fabric:/ServiceFabric/UserService"));
+                foreach (var partition in list)
+                {
+                    var partitionKey = new ServicePartitionKey(((Int64RangePartitionInformation)partition.PartitionInformation).LowKey);
+                    var proxy = ServiceProxy.Create<IUser>(new Uri("fabric:/ServiceFabric/UserService"), partitionKey);
+                    var res = await proxy.LoginUser(user);
+
+                    if (res != null)
+                    {
+                        result = res;
+                        break;
+                    }
+                }
+
+                if (result != null)
+                {
+                    var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+                    var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+                    List<Claim> claims = new List<Claim>();
+                    claims.Add(new Claim("MyCustomClaim", result.Roles.ToString()));
+
+                    var Sectoken = new JwtSecurityToken(_configuration["Jwt:Issuer"],
+                        _configuration["Jwt:Issuer"],
+                        claims,
+                        expires: DateTime.Now.AddMinutes(360),
+                        signingCredentials: credentials);
+
+                    var token = new JwtSecurityTokenHandler().WriteToken(Sectoken);
+
+                    var response = new
+                    {
+                        token = token,
+                        user = result,
+                        message = "Login successful"
+                    };
+
+                    return Ok(response);
+                }
+                else
+                {
+                    return BadRequest("Incorrect email or password");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while login User");
+            }
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            const string pattern = @"^[^\s@]+@[^\s@]+\.[^\s@]+$";
+            return Regex.IsMatch(email, pattern);
+        }
+
+
         [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetUserDetails([FromQuery] Guid id) {

@@ -2,8 +2,11 @@
 using Common.Interface;
 using Common.Model;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.ServiceFabric.Services.Client;
 using Microsoft.ServiceFabric.Services.Remoting.Client;
+using System;
 using System.Fabric;
 using WebService.InterfaceWebService;
 
@@ -12,7 +15,7 @@ namespace WebService.Helpers
     public class UserService : IUserService
     {
         private readonly Uri _userServiceUri = new Uri("fabric:/ServiceFabric/UserService");
-
+        private readonly IEmailSender _emailSender;
 
    
         public async Task<UserDetailsDTO> GetUserDetails(Guid id)
@@ -154,5 +157,6 @@ namespace WebService.Helpers
             }
 
         }
+       
     }
 }
