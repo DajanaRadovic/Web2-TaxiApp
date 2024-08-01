@@ -38,7 +38,7 @@ namespace Common.Entity
 
         public bool IsBlocked { get; set; }
 
-        public Roles.Role TypeUser { get; set; }
+        public string TypeUser { get; set; }
 
         public string Status { get; set; }
 
@@ -47,7 +47,7 @@ namespace Common.Entity
         public UserEntity(User user, string urlImage)
         {
             RowKey = user.Username; //Kljuc za user-a
-            PartitionKey = user.TypeUser.ToString(); //tip korisnika
+            PartitionKey = user.TypeUser.ToString(); //tip korisnika-partition key
             Id = user.Id;
             Username = user.Username;
             Password = user.Password;
@@ -61,7 +61,7 @@ namespace Common.Entity
             NumRating = user.NumRating;
             IsVerified = user.IsVerified;
             IsBlocked = user.IsBlocked;
-            TypeUser = user.TypeUser;
+            TypeUser = user.TypeUser.ToString();
             Status = user.Status.ToString();
             ImageUrl = urlImage;
         }
@@ -69,8 +69,8 @@ namespace Common.Entity
         public UserEntity(User user)
         {
             RowKey = user.Username; //Kljuc za user-a
-            PartitionKey = user.TypeUser.ToString(); //tip korisnika
-            Id = user.Id;
+            PartitionKey = user.TypeUser.ToString(); //tip korisnika - partiton key
+           // Id = user.Id; 
             Username = user.Username;
             Password = user.Password;
             LastName = user.LastName;
@@ -83,7 +83,7 @@ namespace Common.Entity
             NumRating = user.NumRating;
             IsVerified = user.IsVerified;
             IsBlocked = user.IsBlocked;
-            TypeUser = user.TypeUser;
+            TypeUser = user.TypeUser.ToString();
             Status = user.Status.ToString();
             ImageUrl = user.ImageUrl;
         }

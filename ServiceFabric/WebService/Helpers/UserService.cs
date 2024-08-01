@@ -129,9 +129,10 @@ namespace WebService.Helpers
 
         public async Task<UserDetailsDTO> UpdateUser(UpdateUser user)
         {
+            Network network = new Network(user);
             try
             {
-                Network network = new Network(user);
+               
                 var fabricClient = new FabricClient();
                 UserDetailsDTO result = null;
 

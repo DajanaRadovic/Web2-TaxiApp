@@ -119,7 +119,7 @@ namespace WebService.Controllers
         {
             try
             {
-                var res = await _adminService.DriverForVerification();
+                var res = await _adminService.GetFinishedRidesAdmin();
 
                 if (res != null && res.Count > 0)
                 {
@@ -147,7 +147,7 @@ namespace WebService.Controllers
         {
             try
             {
-                var result = await _adminService.GetFinishedRidesAdmin();
+                var result = await _adminService.DriverForVerification();
 
                 if (result != null)
                 {

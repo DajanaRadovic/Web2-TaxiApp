@@ -34,58 +34,29 @@ namespace Common.Model
         [DataMember]
         public string Address { get; set; }
         [DataMember]
-        //  public IFormFile Image { get; set; }
+      
         public UploadDTO Image { get; set; }
 
         public Network(UpdateUser user)
         {
             PreviousEmail = user.PreviousEmail;
+
             Id = user.Id;
+            if (user.Address != null) Address = user.Address;
 
-            if (user.Address != null)
-            {
-                Address = user.Address;
-            }
+            //mm-dd-yyyy
+            if (user.Birthday != null) Birthday = DateTime.ParseExact(user.Birthday, "MM-dd-yyyy", CultureInfo.InvariantCulture);
+            else Birthday = DateTime.MinValue;
 
-            // mm-dd-yyyy
-            if (user.Birthday != null)
-            {
-                Birthday = DateTime.ParseExact(user.Birthday, "MM-dd-yyyy", CultureInfo.InvariantCulture);
-            }
-            else
-            {
-                Birthday = DateTime.MinValue;
-            }
+            if (user.Email != null) Email = user.Email;
 
-            if (user.Email != null)
-            {
-                Email = user.Email;
-            }
+            if (user.FirstName != null) FirstName = user.FirstName;
+            if (user.FirstName != null) LastName = user.LastName;
 
-            if (user.FirstName != null)
-            {
-                FirstName = user.FirstName;
-            }
+            if (user.LastName != null) Username = user.Username;
+            if (user.Image != null) Image = FileHelper.UploadFileOverNetwork(user.Image);
 
-            if (user.LastName != null)
-            {
-                LastName = user.LastName;
-            }
-
-            if (user.Username != null)
-            {
-                Username = user.Username;
-            }
-
-            if (user.Image != null)
-            {
-               // Image = (IFormFile)FileHelper.UploadFileOverNetwork(user.Image);
-            }
-
-            if (user.Password != null)
-            {
-                Password = user.Password;
-            }
+            if (user.Password != null) Password = user.Password;
         }
 
     }

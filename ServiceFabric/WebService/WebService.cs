@@ -18,6 +18,8 @@ using Microsoft.IdentityModel.Tokens;
 using Common.Interface;
 using Common.Model;
 using System.Text;
+using WebService.Helpers;
+using WebService.InterfaceWebService;
 
 namespace WebService
 {
@@ -48,6 +50,14 @@ namespace WebService
                          var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>();
                         var jwtKey = builder.Configuration.GetSection("Jwt:Key").Get<string>();
                         builder.Services.AddTransient<IEmail, Email>();
+                        builder.Services.AddTransient<ValidationServices>();
+                        builder.Services.AddScoped<IUserService, UserService>();
+                        builder.Services.AddScoped<IAdminService, AdminService>();
+                        builder.Services.AddScoped<IDriverService, DriverService>();
+                        builder.Services.AddScoped<IRiderService, RiderService>();
+                        //builder.Services.AddScoped<IEmailSender>();
+
+
                         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                          .AddJwtBearer(options =>
                          {
@@ -73,7 +83,6 @@ namespace WebService
                         builder.Services.AddEndpointsApiExplorer();
                         builder.Services.AddSwaggerGen();
                         builder.Services.AddSignalR();
-
                         builder.Services.AddAuthorization(options =>
                         {
                                options.AddPolicy("Admin", policy => policy.RequireClaim("MyCustomClaim", "Admin"));

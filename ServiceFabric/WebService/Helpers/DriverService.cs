@@ -10,7 +10,7 @@ namespace WebService.Helpers
 {
     public class DriverService : IDriverService
     {
-        private readonly Uri _driverServiceUri = new Uri("fabric:/ServiceFabric/DriverService");
+        private readonly Uri _driverServiceUri = new Uri("fabric:/ServiceFabric/DriveService");
         private readonly Uri _userServiceUri = new Uri("fabric:/ServiceFabric/UserService");
 
         public async Task<Drive> AcceptNewDrive(AcceptRideDTO ride)

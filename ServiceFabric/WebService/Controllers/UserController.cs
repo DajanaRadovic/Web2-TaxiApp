@@ -179,6 +179,15 @@ namespace WebService.Controllers
           
             try
             {
+                Console.WriteLine($"Received Id: {user.Id}");
+                Console.WriteLine($"Received FirstName: {user.FirstName}");
+                Console.WriteLine($"Received LastName: {user.LastName}");
+                Console.WriteLine($"Received Birthday: {user.Birthday}");
+                Console.WriteLine($"Received Email: {user.Email}");
+                Console.WriteLine($"Received Username: {user.Username}");
+                Console.WriteLine($"Received Address: {user.Address}");
+                Console.WriteLine($"Received Image: {user.Image?.FileName}");
+
                 var res = await _userService.UpdateUser(user);
 
                 if (res != null)

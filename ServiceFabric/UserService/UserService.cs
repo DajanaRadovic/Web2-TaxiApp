@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Fabric;
 using System.Linq;
 using System.Threading;
@@ -33,7 +34,7 @@ namespace UserService
         {
             userRepo = new UserRepository("UsersServiceFabric");
         }
-
+        
         public async Task<bool> AddNewUser(User user)
         {
             var userDict = await StateManager.GetOrAddAsync<IReliableDictionary<Guid, User>>("Users");
@@ -69,6 +70,69 @@ namespace UserService
             }
         }
 
+     /*   public async Task<bool> AddNewUser(User user)
+        {
+            var userDict = await StateManager.GetOrAddAsync<IReliableDictionary<Guid, User>>("Users");
+
+            try
+            {
+                using (var t = StateManager.CreateTransaction())
+                {
+                    if (!await IfUserAlreadyExists(user))
+                    {
+                        // Dodavanje korisnika u Reliable Dictionary
+                        try
+                        {
+                            await userDict.AddAsync(t, user.Id, user);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Error adding user to Reliable Dictionary: {ex.Message}");
+                            throw;
+                        }
+
+                        // Upload slike korisnika u Blob Storage
+                        string imageUrl = null;
+                        try
+                        {
+                            CloudBlockBlob blob = await userRepo.GetBlobRef("users", $"image_{user.Id}");
+                            blob.Properties.ContentType = user.Image.TypeContent;
+                            await blob.UploadFromByteArrayAsync(user.Image.File, 0, user.Image.File.Length);
+                            imageUrl = blob.Uri.AbsoluteUri;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Error uploading user image to Blob Storage: {ex.Message}");
+                            throw;
+                        }
+
+                        // Upisivanje korisnika u Azure Table Storage
+                        try
+                        {
+                            UserEntity userEntity = new UserEntity(user, imageUrl);
+                            TableOperation o = TableOperation.Insert(userEntity);
+                            await userRepo.User.ExecuteAsync(o);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Error inserting user into Table Storage: {ex.Message}");
+                            throw;
+                        }
+
+                        await t.CommitAsync();
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in AddNewUser method: {ex.Message}");
+                return false;
+            }
+        }*/
+
+
         private async Task<bool> IfUserAlreadyExists(User user)
         {
             var users = await StateManager.GetOrAddAsync<IReliableDictionary<Guid, User>>("Users");
@@ -94,6 +158,83 @@ namespace UserService
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        private async Task LoadUsers()
+        {
+            var userDictionary = await StateManager.GetOrAddAsync<IReliableDictionary<Guid, User>>("Users");
+            try
+            {
+                using (var t = StateManager.CreateTransaction())
+                {
+                    var users = userRepo.GetAllUsers();
+                    if (users.Count() == 0) return;
+                    else
+                    {
+                        foreach (var user in users)
+                        {
+                            byte[] image = await userRepo.DownloadImage(userRepo, user, "users");
+                            await userDictionary.AddAsync(t, user.Id, UserMapper.MapUserEntity(user, image));
+                        }
+                    }
+
+                    await t.CommitAsync();
+
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+       
+        /// <summary>
+        /// Optional override to create listeners (e.g., HTTP, Service Remoting, WCF, etc.) for this service replica to handle client or user requests.
+        /// </summary>
+        /// <remarks>
+        /// For more information on service communication, see https://aka.ms/servicefabricservicecommunication
+        /// </remarks>
+        /// <returns>A collection of listeners.</returns>
+        protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
+        => this.CreateServiceRemotingReplicaListeners();
+
+        /// <summary>
+        /// This is the main entry point for your service replica.
+        /// This method executes when this replica of your service becomes primary and has write status.
+        /// </summary>
+        /// <param name="cancellationToken">Canceled when Service Fabric needs to shut down this service replica.</param>
+        protected override async Task RunAsync(CancellationToken cancellationToken)
+        {
+            // TODO: Replace the following sample code with your own logic 
+            //       or remove this RunAsync override if it's not needed in your service.
+
+            var myDictionary = await this.StateManager.GetOrAddAsync<IReliableDictionary<string, long>>("myDictionary");
+
+            var users = await this.StateManager.GetOrAddAsync<IReliableDictionary<Guid, User>>("Users");
+            await LoadUsers();
+
+            while (true)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+
+                using (var tx = this.StateManager.CreateTransaction())
+                {
+                    var result = await myDictionary.TryGetValueAsync(tx, "Counter");
+
+                    ServiceEventSource.Current.ServiceMessage(this.Context, "Current Counter Value: {0}",
+                        result.HasValue ? result.Value.ToString() : "Value does not exist.");
+
+                    await myDictionary.AddOrUpdateAsync(tx, "Counter", 0, (key, value) => ++value);
+
+                    // If an exception is thrown before calling CommitAsync, the transaction aborts, all changes are 
+                    // discarded, and nothing is saved to the secondary replicas.
+                    await tx.CommitAsync();
+                }
+
+                await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
             }
         }
 
@@ -158,13 +299,15 @@ namespace UserService
 
         public async Task<UserDetailsDTO> ChangeUser(Network user)
         {
-            var users = await this.StateManager.GetOrAddAsync<IReliableDictionary<Guid, User>>("");
+            var users = await this.StateManager.GetOrAddAsync<IReliableDictionary<Guid, User>>("Users");
             using (var tx = this.StateManager.CreateTransaction())
             {
                 ConditionalValue<User> result = await users.TryGetValueAsync(tx, user.Id);
                 if (result.HasValue)
                 {
                     User userFromReliable = result.Value;
+
+                    Debug.WriteLine($"Updating user:{userFromReliable.Username} with ID: {userFromReliable.Id}");
 
                     if (!string.IsNullOrEmpty(user.Email)) userFromReliable.Email = user.Email;
 
@@ -181,6 +324,9 @@ namespace UserService
                     if (!string.IsNullOrEmpty(user.Username)) userFromReliable.Username = user.Username;
 
                     if (user.Image != null && user.Image.File != null && user.Image.File.Length > 0) userFromReliable.Image = user.Image;
+
+                    Debug.WriteLine($"Updated user: {userFromReliable.Username} with ID: {userFromReliable.Id}");
+
 
                     await users.TryRemoveAsync(tx, user.Id); // ukloni ovog proslog 
 
@@ -335,83 +481,6 @@ namespace UserService
 
                 }
                 else return false;
-            }
-        }
-
-        private async Task LoadUsers()
-        {
-            var userDictionary = await StateManager.GetOrAddAsync<IReliableDictionary<Guid, User>>("Users");
-            try
-            {
-                using (var t = StateManager.CreateTransaction())
-                {
-                    var users = userRepo.GetAllUsers();
-                    if (users.Count() == 0) return;
-                    else
-                    {
-                        foreach (var user in users)
-                        {
-                            byte[] image = await userRepo.DownloadImage(userRepo, user, "users");
-                            await userDictionary.AddAsync(t, user.Id, UserMapper.MapUserEntity(user, image));
-                        }
-                    }
-
-                    await t.CommitAsync();
-
-                }
-
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-
-        /// <summary>
-        /// Optional override to create listeners (e.g., HTTP, Service Remoting, WCF, etc.) for this service replica to handle client or user requests.
-        /// </summary>
-        /// <remarks>
-        /// For more information on service communication, see https://aka.ms/servicefabricservicecommunication
-        /// </remarks>
-        /// <returns>A collection of listeners.</returns>
-        protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
-        => this.CreateServiceRemotingReplicaListeners();
-
-        /// <summary>
-        /// This is the main entry point for your service replica.
-        /// This method executes when this replica of your service becomes primary and has write status.
-        /// </summary>
-        /// <param name="cancellationToken">Canceled when Service Fabric needs to shut down this service replica.</param>
-        protected override async Task RunAsync(CancellationToken cancellationToken)
-        {
-            // TODO: Replace the following sample code with your own logic 
-            //       or remove this RunAsync override if it's not needed in your service.
-
-            var myDictionary = await this.StateManager.GetOrAddAsync<IReliableDictionary<string, long>>("myDictionary");
-
-            var users = await this.StateManager.GetOrAddAsync<IReliableDictionary<Guid, User>>("Users");
-            await LoadUsers();
-
-            while (true)
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-
-                using (var tx = this.StateManager.CreateTransaction())
-                {
-                    var result = await myDictionary.TryGetValueAsync(tx, "Counter");
-
-                    ServiceEventSource.Current.ServiceMessage(this.Context, "Current Counter Value: {0}",
-                        result.HasValue ? result.Value.ToString() : "Value does not exist.");
-
-                    await myDictionary.AddOrUpdateAsync(tx, "Counter", 0, (key, value) => ++value);
-
-                    // If an exception is thrown before calling CommitAsync, the transaction aborts, all changes are 
-                    // discarded, and nothing is saved to the secondary replicas.
-                    await tx.CommitAsync();
-                }
-
-                await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
             }
         }
     }

@@ -96,6 +96,126 @@ namespace DriveService
             }
         }
 
+       
+
+        private async Task LoadDrive()
+        {
+            var drive = await this.StateManager.GetOrAddAsync<IReliableDictionary<Guid, Drive>>("Drives");
+
+            try
+            {
+                using (var transaction = StateManager.CreateTransaction())
+                {
+                    var drives = driveRepo.GetAllDrives();
+                    if (drives.Count() == 0) return;
+                    else
+                    {
+                        foreach (var pom in drives)
+                        {
+                            await drive.AddAsync(transaction, pom.IdDrive, DriveMapper.MapDriveEntity(pom));
+                        }
+                    }
+
+                    await transaction.CommitAsync();
+
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Optional override to create listeners (e.g., HTTP, Service Remoting, WCF, etc.) for this service replica to handle client or user requests.
+        /// </summary>
+        /// <remarks>
+        /// For more information on service communication, see https://aka.ms/servicefabricservicecommunication
+        /// </remarks>
+        /// <returns>A collection of listeners.</returns>
+        protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
+        => this.CreateServiceRemotingReplicaListeners();
+
+        /// <summary>
+        /// This is the main entry point for your service replica.
+        /// This method executes when this replica of your service becomes primary and has write status.
+        /// </summary>
+        /// <param name="cancellationToken">Canceled when Service Fabric needs to shut down this service replica.</param>
+        protected override async Task RunAsync(CancellationToken cancellationToken)
+        {
+            // TODO: Replace the following sample code with your own logic 
+            //       or remove this RunAsync override if it's not needed in your service.
+
+            var drives = await this.StateManager.GetOrAddAsync<IReliableDictionary<Guid, Drive>>("Drives");
+            await LoadDrive();
+
+            while (true)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+
+                using (var t = this.StateManager.CreateTransaction())
+                {
+                    var enumm = await drives.CreateEnumerableAsync(t);
+                    if (await drives.GetCountAsync(t) > 0)
+                    {
+                        using (var pom = enumm.GetAsyncEnumerator())
+                        {
+
+                            while (await pom.MoveNextAsync(default(CancellationToken)))
+                            {
+                                if (!pom.Current.Value.Accepted || pom.Current.Value.IsFinished)
+                                {
+                                    continue;
+                                }
+                                else if (pom.Current.Value.Accepted && pom.Current.Value.TimeToDriverArrivalSeconds > 0)
+                                {
+                                    pom.Current.Value.TimeToDriverArrivalSeconds--;
+                                }
+                                else if (pom.Current.Value.Accepted && pom.Current.Value.TimeToDriverArrivalSeconds == 0 && pom.Current.Value.TimeToEndTripInSeconds > 0)
+                                {
+                                    pom.Current.Value.TimeToEndTripInSeconds--;
+                                }
+                                else if (pom.Current.Value.IsFinished == false)
+                                {
+                                    pom.Current.Value.IsFinished = true;
+                                   
+                                    await driveRepo.FinishDrive(pom.Current.Value.IdDrive);
+
+                                }
+                                await drives.SetAsync(t, pom.Current.Key, pom.Current.Value);
+                            }
+                        }
+                    }
+                    await t.CommitAsync();
+                }
+
+                await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
+            }
+
+            //  var myDictionary = await this.StateManager.GetOrAddAsync<IReliableDictionary<string, long>>("myDictionary");
+
+            /*  while (true)
+              {
+                  cancellationToken.ThrowIfCancellationRequested();
+
+                  using (var tx = this.StateManager.CreateTransaction())
+                  {
+                      var result = await myDictionary.TryGetValueAsync(tx, "Counter");
+
+                      ServiceEventSource.Current.ServiceMessage(this.Context, "Current Counter Value: {0}",
+                          result.HasValue ? result.Value.ToString() : "Value does not exist.");
+
+                      await myDictionary.AddOrUpdateAsync(tx, "Counter", 0, (key, value) => ++value);
+
+                      await tx.CommitAsync();
+                  }
+
+                  await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
+              }*/
+        }
+
+
         public async Task<Drive> AcceptDriveDriver(Guid idRide, Guid idDriver)
         {
             var drive = await this.StateManager.GetOrAddAsync<IReliableDictionary<Guid, Drive>>("Drives");
@@ -401,123 +521,6 @@ namespace DriveService
                 // Log exception
                 throw new ApplicationException($"Failed to submit rating for TripId: {idTrip}", ex);
             }
-        }
-
-        private async Task LoadDrive()
-        {
-            var drive = await this.StateManager.GetOrAddAsync<IReliableDictionary<Guid, Drive>>("Drives");
-
-            try
-            {
-                using (var transaction = StateManager.CreateTransaction())
-                {
-                    var drives = driveRepo.GetAllDrives();
-                    if (drives.Count() == 0) return;
-                    else
-                    {
-                        foreach (var pom in drives)
-                        {
-                            await drive.AddAsync(transaction, pom.IdDrive, DriveMapper.MapDriveEntity(pom));
-                        }
-                    }
-
-                    await transaction.CommitAsync();
-
-                }
-
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Optional override to create listeners (e.g., HTTP, Service Remoting, WCF, etc.) for this service replica to handle client or user requests.
-        /// </summary>
-        /// <remarks>
-        /// For more information on service communication, see https://aka.ms/servicefabricservicecommunication
-        /// </remarks>
-        /// <returns>A collection of listeners.</returns>
-        protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
-        => this.CreateServiceRemotingReplicaListeners();
-
-        /// <summary>
-        /// This is the main entry point for your service replica.
-        /// This method executes when this replica of your service becomes primary and has write status.
-        /// </summary>
-        /// <param name="cancellationToken">Canceled when Service Fabric needs to shut down this service replica.</param>
-        protected override async Task RunAsync(CancellationToken cancellationToken)
-        {
-            // TODO: Replace the following sample code with your own logic 
-            //       or remove this RunAsync override if it's not needed in your service.
-
-            var drives = await this.StateManager.GetOrAddAsync<IReliableDictionary<Guid, Drive>>("Drives");
-            await LoadDrive();
-
-            while (true)
-            {
-                cancellationToken.ThrowIfCancellationRequested();
-
-                using (var t = this.StateManager.CreateTransaction())
-                {
-                    var enumm = await drives.CreateEnumerableAsync(t);
-                    if (await drives.GetCountAsync(t) > 0)
-                    {
-                        using (var pom = enumm.GetAsyncEnumerator())
-                        {
-
-                            while (await pom.MoveNextAsync(default(CancellationToken)))
-                            {
-                                if (!pom.Current.Value.Accepted || pom.Current.Value.IsFinished)
-                                {
-                                    continue;
-                                }
-                                else if (pom.Current.Value.Accepted && pom.Current.Value.TimeToDriverArrivalSeconds > 0)
-                                {
-                                    pom.Current.Value.TimeToDriverArrivalSeconds--;
-                                }
-                                else if (pom.Current.Value.Accepted && pom.Current.Value.TimeToDriverArrivalSeconds == 0 && pom.Current.Value.TimeToEndTripInSeconds > 0)
-                                {
-                                    pom.Current.Value.TimeToEndTripInSeconds--;
-                                }
-                                else if (pom.Current.Value.IsFinished == false)
-                                {
-                                    pom.Current.Value.IsFinished = true;
-                                   
-                                    await driveRepo.FinishDrive(pom.Current.Value.IdDrive);
-
-                                }
-                                await drives.SetAsync(t, pom.Current.Key, pom.Current.Value);
-                            }
-                        }
-                    }
-                    await t.CommitAsync();
-                }
-
-                await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
-            }
-
-            //  var myDictionary = await this.StateManager.GetOrAddAsync<IReliableDictionary<string, long>>("myDictionary");
-
-            /*  while (true)
-              {
-                  cancellationToken.ThrowIfCancellationRequested();
-
-                  using (var tx = this.StateManager.CreateTransaction())
-                  {
-                      var result = await myDictionary.TryGetValueAsync(tx, "Counter");
-
-                      ServiceEventSource.Current.ServiceMessage(this.Context, "Current Counter Value: {0}",
-                          result.HasValue ? result.Value.ToString() : "Value does not exist.");
-
-                      await myDictionary.AddOrUpdateAsync(tx, "Counter", 0, (key, value) => ++value);
-
-                      await tx.CommitAsync();
-                  }
-
-                  await Task.Delay(TimeSpan.FromSeconds(1), cancellationToken);
-              }*/
         }
     }
 }

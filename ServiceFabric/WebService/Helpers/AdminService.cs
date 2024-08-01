@@ -12,11 +12,12 @@ namespace WebService.Helpers
 {
     public class AdminService : IAdminService
     {
-        private readonly Uri _driverServiceUri = new Uri("fabric:/ServiceFabric/DriverService");
+        private readonly Uri _driverServiceUri = new Uri("fabric:/ServiceFabric/DriveService");
         private readonly Uri _userServiceUri = new Uri("fabric:/ServiceFabric/UserService");
 
-        private readonly IEmailSender _emailSender;
-
+       // private readonly IEmailSender _emailSender;
+       private readonly IEmail _emailSender;
+       
 
         public async Task<List<DriverStatusDTO>> AllDrivers()
         {
@@ -158,7 +159,7 @@ namespace WebService.Helpers
 
             if (result && task == "Prihvaceno")
             {
-                await _emailSender.SendEmailAsync(email, "Account verification", "Successfuly verified on taxi app now you can drive!");
+                await _emailSender.SendEmail(email, "Account verification", "Successfuly verified on taxi app now you can drive!");
             }
 
             return result;
