@@ -114,14 +114,14 @@ export default function RiderDashboard(props){
 
     const [toLocation, setToLocation] = useState('');
     const [fromLocation, setFromLocation] = useState('');
-    const [estimation, setEstimation] = useState(''); // price of drive 
+    const [calculation, setCalculation] = useState(''); // price of drive 
     // eslint-disable-next-line no-unused-vars
     const [accepted, setAccepted] = useState(false);
     // eslint-disable-next-line no-unused-vars
     const [estimatedTime, setEstimatedTime] = useState('');
-    const [timeToDriverArrivalSeconds, setTimeToDriverArrivalSeconds] = useState('');
     // eslint-disable-next-line no-unused-vars
     const [tripTicketSubmited, setTripTicketSubmited] = useState(false);
+    const [driversSeconds, setDriversSeconds] = useState('');
     const idUser = user.id; // user id 
     localStorage.setItem("idUser", idUser);
 
@@ -133,10 +133,10 @@ export default function RiderDashboard(props){
                 const data = await getEstimation(localStorage.getItem('token'), apiCalculation, fromLocation, toLocation);
                 console.log("This is estimated price and time:", data);
 
-                const roundedPrice = parseFloat(data.price.estimatedPrice).toFixed(2);
-                console.log(typeof driversArivalSeconds);
-                setTimeToDriverArrivalSeconds(convertTimeStringToMinutes(data.price.driversArivalSeconds));
-                setEstimation(roundedPrice);
+                const roundedPrice = parseFloat(data.price.calculatePrice).toFixed(2);
+                console.log(typeof driversSeconds);
+                setDriversSeconds(convertTimeStringToMinutes(data.price.driversSeconds));
+                setCalculation(roundedPrice);
 
             }
 
@@ -147,12 +147,12 @@ export default function RiderDashboard(props){
 
     const handleAcceptDriveSubmit = async () => {
         try {
-            const data = await AcceptDrive(apiForAcceptDrive, idUser, jwt, fromLocation, toLocation, estimation, accepted, timeToDriverArrivalSeconds);
+            const data = await AcceptDrive(apiForAcceptDrive, idUser, jwt, fromLocation, toLocation, calculation, accepted, driversSeconds);
 
             if (data.message && data.message === "Request failed with status code 400") {
                 alert("You have already submited tiket!");
-                setTimeToDriverArrivalSeconds('');
-                setEstimation('');
+                setDriversSeconds('');
+                setCalculation('');
                 setToLocation('');
                 setFromLocation('');
             }
@@ -470,11 +470,11 @@ export default function RiderDashboard(props){
                         <button style={buttonStyle} onClick={handleEstimationSubmit}>
                             Get Estimation
                         </button>
-                        {estimation && (
+                        {calculation && (
                             <div style={profileSectionStyle}>
                                 <h3>Estimation:</h3>
-                                <p>Price: ${estimation}</p>
-                                <p>Time: {estimatedTime} minutes</p>
+                                <p>Price: ${calculation}</p>
+                                <p>Time: ${driversSeconds} minutes</p>
                             </div>
                         )}
                         <button style={buttonStyle} onClick={handleAcceptDriveSubmit}>
