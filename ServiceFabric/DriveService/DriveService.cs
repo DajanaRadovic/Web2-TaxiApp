@@ -434,9 +434,37 @@ namespace DriveService
             }
         }
 
-        public Task<List<Drive>> GetRidesForDriver(Guid idDriver)
+        public async Task<List<Drive>> GetRidesForDriver(Guid idDriver)
         {
-            throw new NotImplementedException();
+            var drives = await this.StateManager.GetOrAddAsync<IReliableDictionary<Guid, Drive>>("Drives");
+            List<Drive> list = new List<Drive>();
+            try
+            {
+                using (var t = StateManager.CreateTransaction())
+                {
+
+                    var enumm = await drives.CreateEnumerableAsync(t);
+
+                    using (var pom = enumm.GetAsyncEnumerator())
+                    {
+                        while (await pom.MoveNextAsync(default(CancellationToken)))
+                        {
+                            if (pom.Current.Value.IdDriver == idDriver && pom.Current.Value.IsFinished)
+                            {
+                                list.Add(pom.Current.Value);
+                            }
+                        }
+                    }
+                    await t.CommitAsync();
+                }
+
+                return list;
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<List<Drive>> GetRidesForRider(Guid idDriver)
