@@ -24,7 +24,7 @@ export  async function DriveAccept(apiEndpoint, idDriver,idDrive,jwt) {
         
         const response = await axios.put(apiEndpoint, {
             IdDriver :idDriver,
-            IdDrive :idDrive
+            IdRide :idDrive
         }, {
             headers: {
                 Authorization: `Bearer ${jwt}`
@@ -54,6 +54,7 @@ export async function getCurrentRide(jwt, apiEndpoint,idUser) {
         const response = await axios.get(url, config);
         return response.data;
     } catch (error) {
+        console.error('Error while fetching current ride:', error.response);
         return { error: error.response };
     }
 }

@@ -4,10 +4,10 @@ import { getMyRidesDriver } from '../Services/DriverService';
 export default function RidesDriver(){
 
     const[rides, setRides] = useState([]);
-    const token = localStorage.setItem('token');
+    const token = localStorage.getItem('token');
     const apiEndpoint = process.env.REACT_APP_GET_RIDES_DRIVER;
 
-    //funkcija za dobavljanje vozaca
+    
     const fetchDrivers = async()=>{
         try {
             const data = await getMyRidesDriver(token, apiEndpoint, localStorage.getItem('idUser'));
@@ -29,27 +29,36 @@ export default function RidesDriver(){
     }, []);
 
     return (
-        <div className="centered" style={{ width: '100%', height: '10%' }}>
-            <table className="styled-table">
+        <div className="centered" style={{ width: '100%', height: '100%' }}>
+            <h2 style={{ textAlign: 'center', margin: '20px 0' }}>History</h2>
+            <table className="styled-table" style={{ width: '100%', margin: '0 auto', fontSize: '1.2em' }}>
                 <thead>
-                    <tr>
-                        <th>From</th>
-                        <th>To</th>
-                        <th>Price</th>
+                    <tr style={{ 
+                        backgroundColor: '#FFD700', // Narandžasta boja za zaglavlje
+                        color: '#fff', 
+                        textAlign: 'left', 
+                        padding: '10px',
+                        fontWeight: 'bold'
+                    }}>
+                        <th style={{ padding: '10px' }}>From</th>
+                        <th style={{ padding: '10px' }}>To</th>
+                        <th style={{ padding: '10px' }}>Price</th>
                     </tr>
                 </thead>
                 <tbody>
                     {rides.map((ride, index) => (
-                        <tr key={index}>
-                            <td>{ride.toLocation}</td>
-                            <td>{ride.fromLocation}</td>
-                            <td>{ride.price}&euro;</td>
-
+                        <tr key={index} style={{ 
+                            backgroundColor: '#f9f9f9', // Svetlo siva pozadina za redove
+                            borderBottom: '1px solid #ddd',
+                            height: '10px' // Povećana visina redova
+                        }}>
+                            <td style={{ padding: '10px', border: '1px solid #ddd' }}>{ride.toLocation}</td>
+                            <td style={{ padding: '10px', border: '1px solid #ddd' }}>{ride.fromLocation}</td>
+                            <td style={{ padding: '10px', border: '1px solid #ddd' }}>{ride.price}&euro;</td>
                         </tr>
                     ))}
                 </tbody>
             </table>
-
         </div>
     );
 }

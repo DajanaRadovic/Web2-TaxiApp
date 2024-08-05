@@ -60,7 +60,7 @@ const containerStyle = {
     top: '20px',
     left: '20px',
     fontSize: '40px',
-    color: 'yellow',
+    color: '#EEC900',
     fontWeight: 'bold',
 };
   
@@ -137,7 +137,7 @@ const containerStyle = {
             Don't have an account? <Link to="/register" style={{ color: '#4CAF50' }}>Register here</Link>
           </p>
         </div>
-        <div style={titleStyle}>Welcome to our <p>Taxi App</p></div>
+        <div style={titleStyle}>Welcome to our <p>Taxi Application</p></div>
       </div>
     );
   }

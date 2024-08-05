@@ -8,7 +8,7 @@ import { FaSpinner, FaTimes } from 'react-icons/fa';
 import {getAvailRides} from '../Services/DriverService.js'
 import { DriveAccept } from '../Services/DriverService.js';
 import { getCurrentRide } from '../Services/DriverService.js';
-import RidesDriver from './RidesDriver.jsx';
+import RidesDriver from './RidesDriver.jsx'
 
 import { FaCheckCircle } from 'react-icons/fa';
 import { MdPerson } from 'react-icons/md';
@@ -18,9 +18,9 @@ const sidebarStyle = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    width: '250px',
+    width: '250px', // Povećana širina sidebar-a
     padding: '20px',
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)', // Zadržana prozirnost
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     borderRadius: '8px',
     position: 'fixed',
@@ -30,12 +30,12 @@ const sidebarStyle = {
 };
 
 const mainContentStyle = {
-    marginLeft: '270px', // Dodajemo dovoljno prostora za sidebar
-    padding: '20px',
+    marginLeft: '50px', // Da bi se glavni sadržaj pomerio udesno i bio pored sidebar-a
+    padding: '40px',
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    borderRadius: '8px',
-    minHeight: '100vh',
+    borderRadius: '10px',
+    minHeight: '100vh', // Da bi sadržaj zauzimao celu visinu stranice
     fontFamily: 'Arial, sans-serif',
 };
 
@@ -76,15 +76,16 @@ const cancelButtonStyle = {
 };
 
 const profileContainerStyle = {
-    maxWidth: '600px',
-    maxHeight: '60vh',
-    margin: '0 auto',
+    maxWidth: '800px', 
+    maxHeight: '80vh', 
+    margin: '0 auto', 
     padding: '20px',
-    backgroundColor: '#ffffff',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     borderRadius: '8px',
-    overflowY: 'auto',
+  
 };
+
 
 const profileSectionStyle = {
     marginBottom: '20px',
@@ -109,15 +110,22 @@ const profileButtonContainerStyle = {
 export default function DriverDashboard(props){
     const user = props.user;
     const apiEndpoint = process.env.REACT_APP_CHANGE_USER;
+    
+
+    const idUser = user.id; // user id 
+    console.log("ID User:", idUser);
+    if(idUser){
+         localStorage.setItem("idUser", idUser);
+    }else{
+        console.error("ID User is not defined.");
+    }
+    const jwt = localStorage.getItem('token');
+    const navigate = useNavigate();
+
     const apiUserDetails = process.env.REACT_APP_GET_USER_DETAILS;
     const apiCurrentRide = process.env.REACT_APP_GET_CURRENT_RIDE_DRIVER;
     const apiAllRides = process.env.REACT_APP_GET_ALL_RIDES_NOT_FINISHED;
-    const apiAcceptNewDrive = process.env.REACT_APP_ACCEPT_NEW_DRIVE;
-
-    const idUser = user.id;
-    localStorage.setItem("idUser", idUser);
-    const jwt = localStorage.getItem('token');
-    const navigate = useNavigate();
+    
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -159,7 +167,7 @@ export default function DriverDashboard(props){
     // eslint-disable-next-line no-unused-vars
     const [currentRides, setCurrentRides] = useState();
     // eslint-disable-next-line no-unused-vars
-    const [minutesToStart, setMinutesToStart] =useState(null);
+    const [minutes, setMinutes] =useState(null);
     // eslint-disable-next-line no-unused-vars
     const [minutesToEnd, setMinutesToEnd] = useState(null);
    
@@ -252,12 +260,13 @@ export default function DriverDashboard(props){
         }
     };
 
+    const apiAcceptNewDrive = process.env.REACT_APP_ACCEPT_NEW_DRIVE;
     const handleAcceptNewDrive = async(idDrive)=>{
         try {
             const data = await DriveAccept(apiAcceptNewDrive, idUser, idDrive, jwt); // Drive accepted
             setCurrentRides(data.ride);
             setDriveIsActive(true);
-            setMinutesToStart(data.ride.minutesToStart);
+            setMinutes(data.ride.minutes);
             setMinutesToEnd(data.ride.minutesToEnd);
         } catch (error) {
             console.error('Error accepting drive:', error.message);
@@ -317,14 +326,14 @@ export default function DriverDashboard(props){
                     return;
                 }
 
-                if (data.drive) {
-                    console.log("Active trip:", data.drive);
+                if (data.trip) {
+                    console.log("Active trip:", data.trip);
 
-                    if (data.drive.accepted && data.drive.timeToDriverArrivalSeconds > 0) {
-                        setClockSimulation(`You will arrive in: ${data.drive.timeToDriverArrivalSeconds} seconds`);
-                    } else if (data.drive.accepted && data.drive.timeToEndTripInSeconds > 0) {
-                        setClockSimulation(`The trip will end in: ${data.drive.timeToEndTripInSeconds} seconds`);
-                    } else if (data.drive.accepted && data.drive.timeToDriverArrivalSeconds === 0 && data.drive.timeToEndTripInSeconds === 0) {
+                    if (data.trip.accepted && data.trip.timeToDriverArrivalSeconds > 0) {
+                        setClockSimulation(`You will arrive in: ${data.trip.timeToDriverArrivalSeconds} seconds`);
+                    } else if (data.trip.accepted && data.trip.timeToEndTripInSeconds > 0) {
+                        setClockSimulation(`The trip will end in: ${data.trip.timeToEndTripInSeconds} seconds`);
+                    } else if (data.trip.accepted && data.trip.timeToDriverArrivalSeconds === 0 && data.trip.timeToEndTripInSeconds === 0) {
                         setClockSimulation("Your trip has ended");
                     }
                 } else {
@@ -363,7 +372,7 @@ export default function DriverDashboard(props){
                         </p>
                     ) : (
                         <p style={{ color: "white", fontSize: "20px", display: "flex", alignItems: "center" }}>
-                            Hi, {username}
+                            WELCOME, {username}
                             <span style={{ marginLeft: "10px" }}>
                                 {status === 0 && <FaSpinner />}
                                 {status === 1 && <FaCheckCircle />}
@@ -472,43 +481,63 @@ export default function DriverDashboard(props){
                         {pom === 'rides' && (
                             clockSimulation === "You don't have an active trip!" ? (
                                 <div style={{ width: '100%' }}>
-                                    <table style={{ width: '100%' }}>
-                                        <thead>
-                                            <tr>
-                                                <th>Location</th>
-                                                <th>Destination</th>
-                                                <th>Price</th>
-                                                <th>Confirmation</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {rides.map((val) => (
-                                                <tr key={val.idDrive}>
-                                                    <td>{val.toLocation}</td>
-                                                    <td>{val.fromLocation}</td>
-                                                    <td>{val.price}</td>
-                                                    <td>
-                                                        <button
-                                                            style={{
-                                                                borderRadius: '20px',
-                                                                padding: '5px 10px',
-                                                                color: 'white',
-                                                                fontWeight: 'bold',
-                                                                cursor: 'pointer',
-                                                                outline: 'none',
-                                                                backgroundColor: 'green'
-                                                            }}
-                                                            onClick={() => handleAcceptNewDrive(val.tripId)}
-                                                        >
-                                                            Accept
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            ) : null
+                                    <table style={{ 
+    width: '100%', 
+    borderCollapse: 'collapse', 
+    backgroundColor: '#fff', 
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
+    borderRadius: '8px' 
+}}>
+    <thead>
+        <tr style={{ 
+            backgroundColor: '#FFD700', // Narandžasta boja za zaglavlje
+            color: '#fff', 
+            textAlign: 'left', 
+            padding: '10px',
+            fontWeight: 'bold'
+        }}>
+            <th style={{ padding: '10px', border: '1px solid #ddd' }}>Location</th>
+            <th style={{ padding: '10px', border: '1px solid #ddd' }}>Destination</th>
+            <th style={{ padding: '10px', border: '1px solid #ddd' }}>Price</th>
+            <th style={{ padding: '10px', border: '1px solid #ddd' }}>Confirmation</th>
+        </tr>
+    </thead>
+    <tbody>
+        {rides.map((val) => (
+            <tr key={val.idDrive} style={{ 
+                backgroundColor: '#f9f9f9', // Svetlo siva pozadina za redove
+                borderBottom: '1px solid #ddd'
+            }}>
+                <td style={{ padding: '10px', border: '1px solid #ddd' }}>{val.toLocation}</td>
+                <td style={{ padding: '10px', border: '1px solid #ddd' }}>{val.fromLocation}</td>
+                <td style={{ padding: '10px', border: '1px solid #ddd' }}>{val.price}</td>
+                <td style={{ padding: '10px', border: '1px solid #ddd' }}>
+                <button
+    style={{
+        borderRadius: '5px', // Manje zaobljeni ivice
+        padding: '10px 20px',
+        color: '#fff',
+        fontWeight: 'bold',
+        cursor: 'pointer',
+        outline: 'none',
+        backgroundColor: '#28a745', // Zelena boja
+        border: 'none',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+        transition: 'background-color 0.3s, transform 0.3s', // Efekat prelaza
+    }}
+    onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#218838'} // Tamnija zelena pri prelazu mišem
+    onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#28a745'} // Povratak na originalnu zelenu
+    onClick={() => handleAcceptNewDrive(val.idDrive)}
+>
+    Accept
+                </button>
+            </td>
+        </tr>
+    ))}
+</tbody>
+</table>
+ </div>
+) : null
                         )}
                         {pom === 'driveHistory' && (
                             <RidesDriver />

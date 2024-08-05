@@ -11,28 +11,29 @@ import RidesRider from './RidesRider.jsx';
 import { FaStar } from 'react-icons/fa';
 
 
+
 const sidebarStyle = {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'flex-start',
-    width: '250px',
+    alignItems: 'flex-start', // Poravnanje dugmadi levo
+    width: '250px', // Širina sidebar-a
     padding: '20px',
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)', // Prozirna bela boja
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     borderRadius: '8px',
-    position: 'fixed',
-    left: '0',
-    top: '0',
-    bottom: '0',
+    position: 'fixed', // Da bi meni bio fiksiran na levoj strani
+    left: '0', // Postavlja meni na levu stranu
+    top: '0', // Postavlja meni na vrh stranice
+    bottom: '0', // Da bi se protezao do dna stranice
 };
 
 const mainContentStyle = {
-    marginLeft: '270px', // Dodajemo dovoljno prostora za sidebar
+    marginLeft: '150px', // Da bi se glavni sadržaj pomerio udesno i bio pored sidebar-a
     padding: '20px',
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     borderRadius: '8px',
-    minHeight: '100vh',
+    minHeight: '100vh', // Da bi sadržaj zauzimao celu visinu stranice
     fontFamily: 'Arial, sans-serif',
 };
 
@@ -40,7 +41,7 @@ const buttonStyle = {
     width: '100%',
     padding: '10px 15px',
     margin: '10px 0',
-    backgroundColor: '#FFD700',
+    backgroundColor: '#FFD700', // Narandžasta boja
     color: '#ffffff',
     border: 'none',
     borderRadius: '5px',
@@ -73,14 +74,14 @@ const cancelButtonStyle = {
 };
 
 const profileContainerStyle = {
-    maxWidth: '600px',
-    maxHeight: '60vh',
-    margin: '0 auto',
+    maxWidth: '800px', 
+    maxHeight: '70vh', 
+    margin: '0 auto', 
     padding: '20px',
-    backgroundColor: '#ffffff',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     borderRadius: '8px',
-    overflowY: 'auto',
+  
 };
 
 const profileSectionStyle = {
@@ -97,7 +98,7 @@ const profileInputStyle = {
 
 const profileButtonContainerStyle = {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between', // Razmak između dugmadi
     marginTop: '20px',
 };
 
@@ -474,7 +475,7 @@ export default function RiderDashboard(props){
                             <div style={profileSectionStyle}>
                                 <h3>Estimation:</h3>
                                 <p>Price: ${calculation}</p>
-                                <p>Time: ${driversSeconds} minutes</p>
+                                <p>Time: {driversSeconds} minutes</p>
                             </div>
                         )}
                         <button style={buttonStyle} onClick={handleAcceptDriveSubmit}>

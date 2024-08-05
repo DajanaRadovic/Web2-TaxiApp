@@ -24,7 +24,7 @@ const sidebarStyle = {
 };
 
 const mainContentStyle = {
-    marginLeft: '10px', // Da bi se glavni sadržaj pomerio udesno i bio pored sidebar-a
+    marginLeft: '100px', // Da bi se glavni sadržaj pomerio udesno i bio pored sidebar-a
     padding: '20px',
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
