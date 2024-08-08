@@ -68,13 +68,16 @@ export default function Verification() {
     {drivers.map((driver, index) => {
         return (
             <tr key={driver.id} style={{ backgroundColor: index % 2 === 0 ? '#fff' : '#f9f9f9' }}>
-                <td style={{ padding: '10px', border: '1px solid #ddd' }}>{driver.firstName}</td>
+                <td style={{ padding: '10px', border: '1px solid #ddd' }}>{driver.name}</td>
                 <td style={{ padding: '10px', border: '1px solid #ddd' }}>{driver.lastName}</td>
                 <td style={{ padding: '10px', border: '1px solid #ddd' }}>{driver.email}</td>
                 <td style={{ padding: '10px', border: '1px solid #ddd' }}>{driver.username}</td>
                 <td style={{ padding: '10px', border: '1px solid #ddd' }}>
                     {driver.status === 1 ? (
-                        <FaCheckCircle color="green" />
+                        <div>
+                        Successfully <FaCheckCircle style={{ color: 'green', fontSize: '10px' }} />
+                    </div>
+                    
                     ) : (
                         <>
                             <button

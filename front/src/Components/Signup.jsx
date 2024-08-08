@@ -50,7 +50,7 @@ const containerStyle = {
 
 
 export default function Signup(){
-    const idClient = process.env.REACT_APP_CLIENT_ID;
+    const clientId = process.env.REACT_APP_CLIENT_ID;
     const signupEndpoint = process.env.REACT_APP_SIGNUP;
 
     const [firstName, setFirstName] = useState('');
@@ -162,10 +162,10 @@ export default function Signup(){
         }
     };
     useEffect(() => {
-        if (idClient) {
+        if (clientId) {
             function start() {
                 gapi.client.init({
-                    idClient: idClient,
+                  clientId: clientId,
                     scope: ""
                 });
             }
@@ -173,21 +173,22 @@ export default function Signup(){
         } else {
             console.error("Client ID is not defined in .env file");
         }
-    }, [idClient]);
+    }, [clientId]);
 
 
     const onSuccess = (res)=>{
-        const userProfile = res.object;
+        const userProfile = res.profileObj;
         setEmail(userProfile.email);
-        setFirstName(userProfile.firstNameSecond);
-        setLastName(userProfile.lastNameSecond);
+        setFirstName(userProfile.givenName);
+        setLastName(userProfile.familyName);
 
         setEmailError(!userProfile.email);
-        setFirstNameError(!userProfile.firstNameSecond);
-        setLastNameError(!userProfile.lastNameSecond);
+        setFirstNameError(!userProfile.givenName);
+        setLastNameError(!userProfile.familyName);
 
         alert("Yavrsi druga polja");
     }
+        
 
     const onFailure = (res)=>{
         console.log("Filed:", res);
@@ -281,7 +282,7 @@ export default function Signup(){
             </form>
             <div style={{ textAlign: 'center', marginTop: '10px' }}>
               <GoogleLogin
-                clientId={idClient}
+                clientId={clientId}
                 buttonText="Login with Google"
                 onSuccess={onSuccess}
                 onFailure={onFailure}

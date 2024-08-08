@@ -1,6 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import { FaCar } from 'react-icons/fa';
-import { FaRoad } from 'react-icons/fa';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { fetchUserInfo, updateUserFields, formatDateOnly, generateImageUrl } from '../Services/UserProfileService';
@@ -11,7 +9,7 @@ import { getCurrentRide } from '../Services/DriverService.js';
 import RidesDriver from './RidesDriver.jsx'
 
 import { FaCheckCircle } from 'react-icons/fa';
-import { MdPerson } from 'react-icons/md';
+
 
 
 const sidebarStyle = {
@@ -84,6 +82,22 @@ const profileContainerStyle = {
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     borderRadius: '8px',
   
+};
+
+const buttonStyleMenu = {
+    width: '100%',
+    padding: '20px 20px',
+    margin: '10px 0px',
+    backgroundColor: '#FFD700', // Narandžasta boja
+    color: 'black',
+    border: 'none',
+    borderRadius: '20px',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontWeight:'bold'
+    
 };
 
 
@@ -170,6 +184,7 @@ export default function DriverDashboard(props){
     const [minutes, setMinutes] =useState(null);
     // eslint-disable-next-line no-unused-vars
     const [minutesToEnd, setMinutesToEnd] = useState(null);
+    
    
     useEffect(() => {
         const fetchUserDetails = async () => {
@@ -322,7 +337,7 @@ export default function DriverDashboard(props){
                 console.log("Active trip:", data);
 
                 if (data.error && data.error.status === 400) {
-                    setClockSimulation("You don't have an active trip!");
+                    setClockSimulation("No active trip at the moment");
                     return;
                 }
 
@@ -337,7 +352,7 @@ export default function DriverDashboard(props){
                         setClockSimulation("Your trip has ended");
                     }
                 } else {
-                    setClockSimulation("You don't have an active trip!");
+                    setClockSimulation("No active trip at the moment");
                 }
             } catch (error) {
                 console.log("Error fetching ride data:", error);
@@ -359,9 +374,9 @@ export default function DriverDashboard(props){
     return (
         <div style={{ display: 'flex', flexDirection: 'row', height: '100vh' }}>
             <div style={sidebarStyle}>
-                <button className="button-logout" onClick={handleSignOut} style={buttonStyle}>
+                <button className="button-logout" onClick={handleSignOut} style={buttonStyleMenu}>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <FaSignOutAlt size={25} style={{ marginRight: '4px' }} />
+                        <FaSignOutAlt size={20} style={{ marginRight: '4px' }} />
                         <span>Sign out</span>
                     </div>
                 </button>
@@ -371,44 +386,58 @@ export default function DriverDashboard(props){
                             <FaTimes style={{ marginRight: "10px" }} /> You are blocked
                         </p>
                     ) : (
-                        <p style={{ color: "white", fontSize: "20px", display: "flex", alignItems: "center" }}>
+                        <p style={{ color: "black", fontSize: "20px", display: "flex", alignItems: "center", fontFamily:"Georgia, serif" }}>
                             WELCOME, {username}
                             <span style={{ marginLeft: "10px" }}>
                                 {status === 0 && <FaSpinner />}
-                                {status === 1 && <FaCheckCircle />}
+                                {status === 1 && <FaCheckCircle style={{ color: 'green' }} />}
                                 {status === 2 && <FaTimes />}
                             </span>
                         </p>
                     )}
                 </div>
-                <hr style={{ width: '100%', margin: '10px 0' }} />
-                {clockSimulation === "You don't have an active trip!" ? (
+                <hr style={{ width: '100%', margin: '10px 0px'}} />
+                
+               
+                {clockSimulation === "No active trip at the moment" ? (
                     <>
-                        <button className="button" onClick={handleEditProfile} style={buttonStyle}>
+                        <button className="button" onClick={handleEditProfile} style={buttonStyleMenu}>
                             <div style={{ display: 'flex', alignItems: 'center' }}>
-                                <MdPerson size={25} style={{ marginRight: '30px' }} />
-                                <span>Profile</span>
+                                <span>PROFILE</span>
                             </div>
                         </button>
                         {!isBlocked && isVerified === true ? (
                             <>
-                                <button className="button" onClick={handleViewRides} style={buttonStyle}>
+                                <button className="button" onClick={handleViewRides} style={buttonStyleMenu}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <FaCar size={25} style={{ marginRight: '30px' }} />
-                                        <span>New rides</span>
+                                        <span>NEW RIDES</span>
                                     </div>
                                 </button>
-                                <button className="button" onClick={handleDriveHistory} style={buttonStyle}>
+                                <button className="button" onClick={handleDriveHistory} style={buttonStyleMenu}>
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <FaRoad size={25} style={{ marginRight: '30px' }} />
-                                        <span>Rides history</span>
+                                        
+                                        <span>HISTORY</span>
                                     </div>
                                 </button>
                             </>
                         ) : null}
                     </>
                 ) : null}
-                <p style={{ color: 'white', marginTop: '20px' }}>{clockSimulation}</p>
+            <p style={{
+    color: '#000', // Crna boja
+    marginTop: '20px',
+    fontSize: '20px', // Veći font
+    fontFamily: 'Georgia, serif', // Elegantni serif font
+    fontWeight: 'bold', // Bold font
+    textAlign: 'center', // Poravnanje na sredinu
+    padding: '15px', // Dodaj padding
+    backgroundColor: '#f0f8ff', // Svetlo plava pozadina
+    border: '1px solid #dcdcdc', // Siv border
+    borderRadius: '10px', // Veći zaobljeni uglovi
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // Delikatna senka
+}}>
+    {clockSimulation}
+</p>
             </div>
             <div style={mainContentStyle}>
                 {!driveIsActive ? (
@@ -479,8 +508,9 @@ export default function DriverDashboard(props){
                             </div>
                         )}
                         {pom === 'rides' && (
-                            clockSimulation === "You don't have an active trip!" ? (
+                            clockSimulation === "No active trip at the moment" ? (
                                 <div style={{ width: '100%' }}>
+                                     <h2 style={{ textAlign: 'center', color: '#333', marginBottom: '50px' }}>New rides</h2>
                                     <table style={{ 
     width: '100%', 
     borderCollapse: 'collapse', 
@@ -488,6 +518,7 @@ export default function DriverDashboard(props){
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
     borderRadius: '8px' 
 }}>
+
     <thead>
         <tr style={{ 
             backgroundColor: '#FFD700', // Narandžasta boja za zaglavlje

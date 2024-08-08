@@ -1,14 +1,13 @@
 import React, {useState, useEffect} from 'react';
 
-import { FaCar } from 'react-icons/fa';
-import { FaRoad } from 'react-icons/fa';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { useNavigate } from "react-router-dom";
 import { fetchUserInfo, updateUserFields, formatDateOnly, generateImageUrl } from '../Services/UserProfileService';
 import { getEstimation, AcceptDrive, convertTimeStringToMinutes } from '../Services/Calculation.js';
 import { getCurrentRide } from '../Services/RiderService.js';
 import RidesRider from './RidesRider.jsx';
-import { FaStar } from 'react-icons/fa';
+import Rating from './Rating.jsx';
+
 
 
 
@@ -76,8 +75,8 @@ const cancelButtonStyle = {
 const profileContainerStyle = {
     maxWidth: '800px', 
     maxHeight: '70vh', 
-    margin: '0 auto', 
-    padding: '20px',
+    margin: '50px auto', 
+    padding: '30px',
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     borderRadius: '8px',
@@ -94,6 +93,22 @@ const profileInputStyle = {
     border: '1px solid #ccc',
     borderRadius: '5px',
     marginBottom: '10px',
+};
+
+const buttonStyleMenu = {
+    width: '100%',
+    padding: '20px 20px',
+    margin: '10px 0px',
+    backgroundColor: '#FFD700', // Narandžasta boja
+    color: 'black',
+    border: 'none',
+    borderRadius: '20px',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontWeight:'bold'
+    
 };
 
 const profileButtonContainerStyle = {
@@ -333,7 +348,7 @@ export default function RiderDashboard(props){
                 console.log("Active trip:", data);
 
                 if (data.error && data.error.status === 400) {
-                    setClockSimulation("You don't have an active trip!");
+                    setClockSimulation("No active trip at the moment");
                     return;
                 }
 
@@ -341,7 +356,7 @@ export default function RiderDashboard(props){
                     console.log("Active trip:", data.drive);
 
                     if (!data.drive.accepted) {
-                        setClockSimulation("Your current ticket is not accepted by any driver!");
+                        setClockSimulation("No driver has accepted your current ticket");
                     } else if (data.drive.accepted && data.drive.timeToDriverArrivalSeconds > 0) {
                         setClockSimulation(`The driver will arrive in: ${data.drive.timeToDriverArrivalSeconds} seconds`);
                     } else if (data.drive.accepted && data.drive.timeToEndTripInSeconds > 0) {
@@ -350,7 +365,7 @@ export default function RiderDashboard(props){
                         setClockSimulation("Your trip has ended");
                     }
                 } else {
-                    setClockSimulation("You don't have an active trip!");
+                    setClockSimulation("No active trip at the moment");
                 }
             } catch (error) {
                 console.log("Error fetching ride data:", error);
@@ -373,18 +388,36 @@ export default function RiderDashboard(props){
         <div style={{ display: 'flex' }}>
             <div style={sidebarStyle}>
                 <img src={image} alt="Profile" style={profileImageStyle} />
-                <button style={buttonStyle} onClick={handleEditProfile}>
-                  Edit Profile
+                <button style={buttonStyleMenu} onClick={handleEditProfile}>
+                  PROFILE
                 </button>
-                <button style={buttonStyle} onClick={handleNewDriveClick}>
-                    <FaCar /> New Drive
+                <button style={buttonStyleMenu} onClick={handleNewDriveClick}>
+                     NEW DRIVE
                 </button>
-                <button style={buttonStyle} onClick={handleDriveHistory}>
-                    <FaRoad /> Drive History
+                <button style={buttonStyleMenu} onClick={handleRate}>
+                     RATE
                 </button>
-                <button style={buttonStyle} onClick={handleSignOut}>
+                <button style={buttonStyleMenu} onClick={handleDriveHistory}>
+                     HISTORY
+                </button>
+                <button style={buttonStyleMenu} onClick={handleSignOut}>
                     <FaSignOutAlt /> Sign Out
                 </button>
+                <p style={{
+    color: '#000', // Crna boja
+    marginTop: '20px',
+    fontSize: '20px', // Veći font
+    fontFamily: 'Georgia, serif', // Elegantni serif font
+    fontWeight: 'bold', // Bold font
+    textAlign: 'center', // Poravnanje na sredinu
+    padding: '15px', // Dodaj padding
+    backgroundColor: '#f0f8ff', // Svetlo plava pozadina
+    border: '1px solid #dcdcdc', // Siv border
+    borderRadius: '10px', // Veći zaobljeni uglovi
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // Delikatna senka
+}}>
+    {clockSimulation}
+</p>
             </div>
             <div style={mainContentStyle}>
             {pom === 'editProfile' ? (
@@ -485,20 +518,17 @@ export default function RiderDashboard(props){
                 )}
                 {pom === 'rate' && (
                     <div style={profileContainerStyle}>
-                        <h2>Rate Driver</h2>
-                        <FaStar style={{ color: '#FFD700', marginRight: '5px' }} />
-                        <FaStar style={{ color: '#FFD700', marginRight: '5px' }} />
-                        <FaStar style={{ color: '#FFD700', marginRight: '5px' }} />
-                        <FaStar style={{ color: '#FFD700', marginRight: '5px' }} />
-                        <FaStar style={{ color: '#FFD700' }} />
+                        <h2 style={{ textAlign: 'center', margin: '20px 0' }}>Rate Driver</h2>
+                        <Rating/>
                     </div>
                 )}
                 {pom === 'history' && (
                     <div style={profileContainerStyle}>
+                        <h2 style={{ textAlign: 'center', margin: '20px 0' }}>History</h2>
                         <RidesRider />
                     </div>
                 )}
-                <div>{clockSimulation}</div>
+               
             </div>
         </div>
     );

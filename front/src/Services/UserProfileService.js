@@ -38,7 +38,7 @@ export function formatDateOnly(dateTime) {
 }
 
 // Funkcija za promenu korisničkih podataka
-export async function updateUserFields(apiEndpoint, firstName, lastName, birthday, address, email, password, username, jwt, image, newPassword, newPasswordRepeat, oldPasswordRepeat,id) {
+/*export async function updateUserFields(apiEndpoint, firstName, lastName, birthday, address, email, password, username, jwt, image, newPassword, newPasswordRepeat, oldPasswordRepeat,id) {
     const formData = new FormData();
     formData.append('FirstName', firstName);
     formData.append('LastName', lastName);
@@ -69,7 +69,46 @@ export async function updateUserFields(apiEndpoint, firstName, lastName, birthda
         const data = await updateUserFieldsApi(apiEndpoint,formData,jwt);
         return data.changedUser;
     }
+}*/
+export async function updateUserFields(apiEndpoint, firstName, lastName, birthday, address, email, password, username, jwt, image, newPassword, newPasswordRepeat, oldPasswordRepeat, id) {
+    const formData = new FormData();
+    formData.append('FirstName', firstName);
+    formData.append('LastName', lastName);
+    formData.append('Birthday', birthday);
+    formData.append('Address', address);
+    formData.append('Email', email);
+    formData.append("Id", id);
+    
+
+    if (newPassword !== '') {
+        const hashPw = SHA256(newPassword).toString();
+        formData.append('Password', hashPw);
+    } else { 
+        const hashPw = '';
+        formData.append('Password', hashPw);
+    }
+    formData.append('Image', image);
+    formData.append('Username', username);
+    console.log("FormData before sending to API:", Array.from(formData.entries()));
+    let data;
+
+    if (oldPasswordRepeat !== '' || newPasswordRepeat !== '' || newPassword !== '' && validateNewPasswords(password, oldPasswordRepeat, newPassword, newPasswordRepeat)) {
+        console.log("Successfully entered new passwords");
+        data = await updateUserFieldsApi(apiEndpoint, formData, jwt);
+        console.log("data other call", data);
+    } else if (oldPasswordRepeat === '' && newPasswordRepeat === '' && newPassword === '') {
+        data = await updateUserFieldsApi(apiEndpoint, formData, jwt);
+    }
+
+    if (data && data.user) {
+        console.log("Changed user data:", data.user);
+        return data.user;
+    } else {
+        console.error("data or data.user is undefined:", data);
+        return null; // or handle this case appropriately
+    }
 }
+
 
 // Funkcija za dobijanje informacija o korisniku
 export async function fetchUserInfo(jwt, apiEndpoint, userId) {
@@ -94,6 +133,7 @@ export async function fetchUserInfo(jwt, apiEndpoint, userId) {
 // API poziv za promenu korisničkih podataka
 export async function updateUserFieldsApi(apiEndpoint, formData, jwt) {
     try {
+        console.log("FormData before API call:", Array.from(formData.entries()));
         const response = await axios.put(apiEndpoint, formData, {
             headers: {
                 'Authorization': `Bearer ${jwt}`,

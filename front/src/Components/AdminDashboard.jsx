@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchUserInfo, updateUserFields, formatDateOnly, generateImageUrl } from '../Services/UserProfileService';
-import { MdPerson } from 'react-icons/md';
-import { FaCheckCircle, FaCar, FaRoad, FaSignOutAlt } from 'react-icons/fa';
+
+import { FaSignOutAlt } from 'react-icons/fa';
 import Drivers from './Drivers';
 import Verification from './Verification';
 import RidesAdmin from './RidesAdmin';
@@ -35,17 +35,37 @@ const mainContentStyle = {
 
 const buttonStyle = {
     width: '100%',
-    padding: '10px 15px',
-    margin: '10px 0',
+    padding: '10px 10px',
+    margin: '10px 0px',
     backgroundColor: '#FFD700', // Narandžasta boja
-    color: '#ffffff',
+    color: 'black',
     border: 'none',
     borderRadius: '5px',
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    fontWeight:'bold'
+    
 };
+
+const buttonStyleMenu = {
+    width: '100%',
+    padding: '20px 20px',
+    margin: '10px 0px',
+    backgroundColor: '#FFD700', // Narandžasta boja
+    color: 'black',
+    border: 'none',
+    borderRadius: '20px',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontWeight:'bold'
+    
+};
+
+
 
 const profileImageStyle = {
     width: '100px',
@@ -168,8 +188,10 @@ export default function AdminDashboard(props) {
         fetchUserDetails();
     }, [jwt, apiUserDetails, idUser]);
 
-    const handleSaveChangeClick = async () => {
+   /* const handleSaveChangeClick = async () => {
         const ChangeUserDetails = await updateUserFields(apiChangeUser, firstName, lastName, birthday, address, email, password, fileSelected, username, jwt, newPassword, repeatPassword, oldPassword, idUser)
+       
+        console.log("Change user:", ChangeUserDetails);
         setUserInit(ChangeUserDetails);
         setUserDetails(ChangeUserDetails);
         setAddress(ChangeUserDetails.address);
@@ -191,8 +213,49 @@ export default function AdminDashboard(props) {
         setNewPassword('');
         setRepeatPassword('');
         setIsEditing(false);
-        setFileSelected(null);
+        //setFileSelected(null);
+    };*/
+    const handleSaveChangeClick = async () => {
+
+        console.log("Username before sending to API:",username);
+        try {
+            const ChangeUserDetails = await updateUserFields(
+                apiChangeUser, firstName, lastName, birthday, address, email, password, fileSelected, username, jwt, newPassword, repeatPassword, oldPassword, idUser
+            );
+    
+            console.log("Change user:", ChangeUserDetails);
+    
+            if (ChangeUserDetails) {
+                setUserInit(ChangeUserDetails);
+                setUserDetails(ChangeUserDetails);
+                setAddress(ChangeUserDetails.address);
+                setAvgRating(ChangeUserDetails.avgRating);
+                setBirthday(formatDateOnly(ChangeUserDetails.birthday));
+                setEmail(ChangeUserDetails.email);
+                setFirstName(ChangeUserDetails.firstName);
+                setImage(generateImageUrl(ChangeUserDetails.image));
+                setIsBlocked(ChangeUserDetails.isBlocked);
+                setIsVerified(ChangeUserDetails.isVerified);
+                setLastName(ChangeUserDetails.lastName);
+                setNumRating(ChangeUserDetails.numRatings);
+                setPassword(ChangeUserDetails.password);
+                setRole(ChangeUserDetails.role);
+                setStatus(ChangeUserDetails.status);
+                setSumRating(ChangeUserDetails.sumRatings);
+                setUsername(ChangeUserDetails.username);
+                setOldPassword('');
+                setNewPassword('');
+                setRepeatPassword('');
+                setIsEditing(false);
+                // setFileSelected(null);
+            } else {
+                console.error("ChangeUserDetails is undefined");
+            }
+        } catch (error) {
+            console.error("Error updating user fields:", error);
+        }
     };
+    
 
     
     const handleSignOut = () => {
@@ -276,21 +339,17 @@ export default function AdminDashboard(props) {
         <div>
             <div style={sidebarStyle}>
                 <h2 style={{ marginBottom: '20px' }}>Menu</h2>
-                <button style={buttonStyle} onClick={handleEditProfile}>
-                    <MdPerson size={20} style={{ marginRight: '10px' }} />
-                    Edit Profile
+                <button style={buttonStyleMenu} onClick={handleEditProfile}>
+                    PROFILE
                 </button>
-                <button style={buttonStyle} onClick={handleShowDrivers}>
-                    <FaCar size={20} style={{ marginRight: '10px' }} />
-                    Drivers
+                <button style={buttonStyleMenu} onClick={handleShowDrivers}>
+                    DRIVERS
                 </button>
-                <button style={buttonStyle} onClick={handleShowForVerification}>
-                    <FaCheckCircle size={20} style={{ marginRight: '10px' }} />
-                    Verify Drivers
+                <button style={buttonStyleMenu} onClick={handleShowForVerification}>
+                    VERIFY
                 </button>
-                <button style={buttonStyle} onClick={handleShowAllRides}>
-                    <FaRoad size={20} style={{ marginRight: '10px' }} />
-                    Rides
+                <button style={buttonStyleMenu} onClick={handleShowAllRides}>
+                    RIDES
                 </button>
             </div>
             <div style={mainContentStyle}>
@@ -334,15 +393,15 @@ export default function AdminDashboard(props) {
                                 </div>
                                 <div style={profileSectionStyle}>
                                     <label style={labelStyle}>Old Password:</label>
-                                    <input type='password' value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} style={profileInputStyle} />
+                                    <input type='password' value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} style={profileInputStyle} disabled />
                                 </div>
                                 <div style={profileSectionStyle}>
                                     <label style={labelStyle}>New Password:</label>
-                                    <input type='password' value={newPassword} onChange={(e) => setNewPassword(e.target.value)} style={profileInputStyle} />
+                                    <input type='password' value={newPassword} onChange={(e) => setNewPassword(e.target.value)} style={profileInputStyle} disabled />
                                 </div>
                                 <div style={profileSectionStyle}>
                                     <label style={labelStyle}>Repeat New Password:</label>
-                                    <input type='password' value={repeatPassword} onChange={(e) => setRepeatPassword(e.target.value)} style={profileInputStyle} />
+                                    <input type='password' value={repeatPassword} onChange={(e) => setRepeatPassword(e.target.value)} style={profileInputStyle} disabled />
                                 </div>
                                 <div style={profileButtonContainerStyle}>
                                     <button style={editButtonStyle} onClick={handleSaveChangeClick}>Save Changes</button>
