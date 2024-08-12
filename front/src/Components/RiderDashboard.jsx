@@ -7,6 +7,7 @@ import { getEstimation, AcceptDrive, convertTimeStringToMinutes } from '../Servi
 import { getCurrentRide } from '../Services/RiderService.js';
 import RidesRider from './RidesRider.jsx';
 import Rating from './Rating.jsx';
+import { MdPerson } from 'react-icons/md';
 
 
 
@@ -27,7 +28,7 @@ const sidebarStyle = {
 };
 
 const mainContentStyle = {
-    marginLeft: '150px', // Da bi se glavni sadržaj pomerio udesno i bio pored sidebar-a
+    marginLeft: '100px', // Da bi se glavni sadržaj pomerio udesno i bio pored sidebar-a
     padding: '20px',
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
@@ -38,7 +39,7 @@ const mainContentStyle = {
 
 const buttonStyle = {
     width: '100%',
-    padding: '10px 15px',
+    padding: '10px 10px',
     margin: '10px 0',
     backgroundColor: '#FFD700', // Narandžasta boja
     color: '#ffffff',
@@ -73,11 +74,23 @@ const cancelButtonStyle = {
 };
 
 const profileContainerStyle = {
-    maxWidth: '800px', 
-    maxHeight: '70vh', 
-    margin: '50px auto', 
-    padding: '30px',
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    maxWidth: '600px', // Maksimalna širina za formu
+    maxHeight: '60vh', // Maksimalna visina za formu, prilagodi prema potrebi
+    margin: '0 auto', // Centriranje forme u sredini
+    padding: '20px',
+    backgroundColor: '#ffffff',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    borderRadius: '8px',
+    overflowY: 'auto',
+  
+};
+
+const profileContainerStyle1 = {
+    maxWidth: '800px', // Maksimalna širina za formu
+    maxHeight: '60vh', // Maksimalna visina za formu, prilagodi prema potrebi
+    margin: '0 auto', // Centriranje forme u sredini
+    padding: '20px',
+    backgroundColor: '#ffffff',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     borderRadius: '8px',
   
@@ -122,7 +135,7 @@ export default function RiderDashboard(props){
     const user = props.user;
     const jwt = localStorage.getItem('token');
     const navigate = useNavigate();
-    const apiEndpoint = process.env.REACT_APP_CHANGE_USER;
+    const apiChangeUser = process.env.REACT_APP_CHANGE_USER;
     const apiUserInfo = process.env.REACT_APP_GET_USER_DETAILS;
     const apiCalculation = process.env.REACT_APP_GET_PRICE;
     const apiForAcceptDrive = process.env.REACT_APP_PUT_ACCEPT_GIVEN_DRIVE;
@@ -225,30 +238,77 @@ export default function RiderDashboard(props){
         navigate('/');
     };
 
+
+    useEffect(() => {
+        const fetchUserDetails = async () => {
+            try {
+                const userDetails = await fetchUserInfo(jwt, apiUserInfo, idUser);
+                const user = userDetails.user;
+                console.log(user);
+                setUserDetails(user);
+                setUserInit(user);
+                setAddress(user.address || '');
+                setAvgRating(user.avgRating);
+                setBirthday(formatDateOnly(user.birthday));
+                setEmail(user.email);
+                setFirstName(user.firstName);
+                setImage(generateImageUrl(user.image));
+                setIsBlocked(user.isBlocked);
+                setIsVerified(user.isVerified);
+                setLastName(user.lastName);
+                setNumRating(user.numRating);
+                setPassword(user.password);
+                setRole(user.role);
+                setStatus(user.status);
+                setSumRating(user.sumRating);
+                setUsername(user.username);
+            } catch (error) {
+                console.log('Error fetching:', error.message);
+            }
+        };
+        fetchUserDetails();
+    }, [jwt, apiUserInfo, idUser, pom]);
+
+
     const handleSaveChangeClick = async () => {
-        const ChangeUserDetails = await updateUserFields(apiEndpoint, firstName, lastName, birthday, address, email, password, fileSelected, username, jwt, newPassword, repeatPassword, oldPassword, idUser)
-        setUserInit(ChangeUserDetails);
-        setUserDetails(ChangeUserDetails);
-        setAddress(ChangeUserDetails.address);
-        setAvgRating(ChangeUserDetails.avgRating);
-        setBirthday(formatDateOnly(ChangeUserDetails.birthday));
-        setEmail(ChangeUserDetails.email);
-        setFirstName(ChangeUserDetails.firstName);
-        setImage(generateImageUrl(ChangeUserDetails.image));
-        setIsBlocked(ChangeUserDetails.isBlocked);
-        setIsVerified(ChangeUserDetails.isVerified);
-        setLastName(ChangeUserDetails.lastName);
-        setNumRating(ChangeUserDetails.numRatings);
-        setPassword(ChangeUserDetails.password);
-        setRole(ChangeUserDetails.role);
-        setStatus(ChangeUserDetails.status);
-        setSumRating(ChangeUserDetails.sumRatings);
-        setUsername(ChangeUserDetails.username);
-        setOldPassword('');
-        setNewPassword('');
-        setRepeatPassword('');
-        setIsEditing(false);
-        setFileSelected(null);
+        console.log("Username before sending to API:",username);
+        try {
+            const ChangeUserDetails = await updateUserFields(
+                apiChangeUser, firstName, lastName, birthday, address, email, password, username, jwt, fileSelected,  newPassword, repeatPassword, oldPassword, idUser
+            );
+    
+            console.log("Change user:", ChangeUserDetails);
+    
+            if (ChangeUserDetails) {
+                setUserInit(ChangeUserDetails);
+                setUserDetails(ChangeUserDetails);
+                setAddress(ChangeUserDetails.address);
+                setAvgRating(ChangeUserDetails.avgRating);
+                setBirthday(formatDateOnly(ChangeUserDetails.birthday));
+                setEmail(ChangeUserDetails.email);
+                setFirstName(ChangeUserDetails.firstName);
+                setImage(generateImageUrl(ChangeUserDetails.image));
+                setIsBlocked(ChangeUserDetails.isBlocked);
+                setIsVerified(ChangeUserDetails.isVerified);
+                setLastName(ChangeUserDetails.lastName);
+                setNumRating(ChangeUserDetails.numRatings);
+                setPassword(ChangeUserDetails.password);
+                setRole(ChangeUserDetails.role);
+                setStatus(ChangeUserDetails.status);
+                setSumRating(ChangeUserDetails.sumRatings);
+                setUsername(ChangeUserDetails.username);
+                setOldPassword('');
+                setNewPassword('');
+                setRepeatPassword('');
+                setIsEditing(false);
+                setPom('editProfile');
+                // setFileSelected(null);
+            } else {
+                console.error("ChangeUserDetails is undefined");
+            }
+        } catch (error) {
+            console.error("Error updating user fields:", error);
+        }
 
 
     }
@@ -261,12 +321,6 @@ export default function RiderDashboard(props){
         setPom('newDrive');
 
     }
-
-    const handleEditProfile = () => {
-        setPom('editProfile');
-    }
-
-    // eslint-disable-next-line no-unused-vars
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         setFileSelected(file);
@@ -278,6 +332,18 @@ export default function RiderDashboard(props){
             reader.readAsDataURL(file);
         }
     };
+    /*const handleEditProfile = () => {
+        setPom('editProfile');
+    }*/
+   const handleEditProfile = async()=>{
+    try{
+        setPom('editProfile');
+    }catch(error){
+        console.error("Error", error);
+    }
+   }
+
+   
 
     const handleCancelClick = () => {
         setIsEditing(false);
@@ -306,35 +372,7 @@ export default function RiderDashboard(props){
         setPom('history');
     };
 
-    useEffect(() => {
-        const fetchUserDetails = async () => {
-            try {
-                const userDetails = await fetchUserInfo(jwt, apiUserInfo, idUser);
-                const user = userDetails.user;
-                console.log(user);
-                setUserDetails(user);
-                setUserInit(user);
-                setAddress(user.address || '');
-                setAvgRating(user.avgRating);
-                setBirthday(formatDateOnly(user.birthday));
-                setEmail(user.email);
-                setFirstName(user.firstName);
-                setImage(generateImageUrl(user.image));
-                setIsBlocked(user.isBlocked);
-                setIsVerified(user.isVerified);
-                setLastName(user.lastName);
-                setNumRating(user.numRating);
-                setPassword(user.password);
-                setRole(user.role);
-                setStatus(user.status);
-                setSumRating(user.sumRating);
-                setUsername(user.username || '');
-            } catch (error) {
-                console.log('Error fetching:', error.message);
-            }
-        };
-        fetchUserDetails();
-    }, [jwt, apiUserInfo, idUser]);
+    
 
     // eslint-disable-next-line no-unused-vars
     const handleRate = () =>{
@@ -387,9 +425,23 @@ export default function RiderDashboard(props){
     return (
         <div style={{ display: 'flex' }}>
             <div style={sidebarStyle}>
-                <img src={image} alt="Profile" style={profileImageStyle} />
-                <button style={buttonStyleMenu} onClick={handleEditProfile}>
-                  PROFILE
+               
+                <button 
+                    onClick={handleEditProfile} 
+                    style={{
+                    width: '50px',
+                    height: '50px',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    border: 'none',
+                    backgroundColor: 'white', 
+                    cursor: 'pointer',
+                    marginRight:'auto',
+            }}>
+                     <MdPerson size={40} />
+                     
                 </button>
                 <button style={buttonStyleMenu} onClick={handleNewDriveClick}>
                      NEW DRIVE
@@ -453,15 +505,15 @@ export default function RiderDashboard(props){
                                 </div>
                                 <div style={profileSectionStyle}>
                                     <label style={labelStyle}>Old Password:</label>
-                                    <input type='password' value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} style={profileInputStyle} />
+                                    <input type='password' value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} style={profileInputStyle} disabled />
                                 </div>
                                 <div style={profileSectionStyle}>
                                     <label style={labelStyle}>New Password:</label>
-                                    <input type='password' value={newPassword} onChange={(e) => setNewPassword(e.target.value)} style={profileInputStyle} />
+                                    <input type='password' value={newPassword} onChange={(e) => setNewPassword(e.target.value)} style={profileInputStyle} disabled />
                                 </div>
                                 <div style={profileSectionStyle}>
                                     <label style={labelStyle}>Repeat New Password:</label>
-                                    <input type='password' value={repeatPassword} onChange={(e) => setRepeatPassword(e.target.value)} style={profileInputStyle} />
+                                    <input type='password' value={repeatPassword} onChange={(e) => setRepeatPassword(e.target.value)} style={profileInputStyle} disabled />
                                 </div>
                                 <div style={profileButtonContainerStyle}>
                                     <button style={editButtonStyle} onClick={handleSaveChangeClick}>Save Changes</button>
@@ -523,7 +575,7 @@ export default function RiderDashboard(props){
                     </div>
                 )}
                 {pom === 'history' && (
-                    <div style={profileContainerStyle}>
+                    <div style={profileContainerStyle1}>
                         <h2 style={{ textAlign: 'center', margin: '20px 0' }}>History</h2>
                         <RidesRider />
                     </div>

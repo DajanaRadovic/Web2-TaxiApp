@@ -24,53 +24,22 @@ export function generateImageUrl(image) {
     }
 }
 
-// Funkcija za konverziju datuma i vremena u samo datum
+
 export function formatDateOnly(dateTime) {
-    const date = new Date(dateTime);
+    const dateObj = new Date(dateTime);
 
-    // Izvlačenje komponenti datuma
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1; // Meseci u JavaScriptu su 0-indeksirani
-    const day = date.getDate();
+    // Get the date components
+    const year = dateObj.getFullYear();
+    const month = dateObj.getMonth() + 1; // Meseci su 0-indeksirani, dodaj 1
+    const day = dateObj.getDate();
 
-    // Formatiranje datuma kao 'DD-MM-YYYY'
-    return `${day.toString().padStart(2, '0')}-${month.toString().padStart(2, '0')}-${year}`;
+    // Format the date as 'MM-dd-yyyy'
+    return `${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}-${year}`;
 }
 
-// Funkcija za promenu korisničkih podataka
-/*export async function updateUserFields(apiEndpoint, firstName, lastName, birthday, address, email, password, username, jwt, image, newPassword, newPasswordRepeat, oldPasswordRepeat,id) {
-    const formData = new FormData();
-    formData.append('FirstName', firstName);
-    formData.append('LastName', lastName);
-    formData.append('Birthday', birthday);
-    formData.append('Address', address);
-    formData.append('Email', email);
-    formData.append("Id", id);
-
-    // eslint-disable-next-line eqeqeq
-    if(newPassword !='') {
-        const hashPw = SHA256(newPassword).toString();
-        formData.append('Password', hashPw);
-    }
-    else{ 
-    const hashPw = '';
-    formData.append('Password', hashPw);
-    }
-    formData.append('Image', image);
-    formData.append('Username', username);
-
-    // eslint-disable-next-line eqeqeq
-    if(oldPasswordRepeat!='' || newPasswordRepeat!='' || newPassword!='' && validateNewPasswords(password,oldPasswordRepeat,newPassword,newPasswordRepeat)){
-            console.log("Succesfully entered new passwords");
-            const dataOtherCall = await updateUserFieldsApi(apiEndpoint,formData,jwt);
-            console.log("data other call",dataOtherCall);
-            return dataOtherCall.changedUser;
-    }else if(oldPasswordRepeat ==='' && newPasswordRepeat ==='' && newPassword === ''){
-        const data = await updateUserFieldsApi(apiEndpoint,formData,jwt);
-        return data.changedUser;
-    }
-}*/
+/*
 export async function updateUserFields(apiEndpoint, firstName, lastName, birthday, address, email, password, username, jwt, image, newPassword, newPasswordRepeat, oldPasswordRepeat, id) {
+    console.log("Username before adding to FormData:", username);
     const formData = new FormData();
     formData.append('FirstName', firstName);
     formData.append('LastName', lastName);
@@ -87,8 +56,12 @@ export async function updateUserFields(apiEndpoint, firstName, lastName, birthda
         const hashPw = '';
         formData.append('Password', hashPw);
     }
-    formData.append('Image', image);
-    formData.append('Username', username);
+    if(image){
+        formData.append('Image', image);
+    }
+    if(username){
+        formData.append('Username', username);
+    }
     console.log("FormData before sending to API:", Array.from(formData.entries()));
     let data;
 
@@ -108,6 +81,49 @@ export async function updateUserFields(apiEndpoint, firstName, lastName, birthda
         return null; // or handle this case appropriately
     }
 }
+*/
+
+export async function updateUserFields(apiEndpoint, firstName, lastName, birthday, address, email, password, username, jwt, image, newPassword, newPasswordRepeat, oldPasswordRepeat, id) {
+    const formData = new FormData();
+    formData.append('FirstName', firstName);
+    formData.append('LastName', lastName);
+    formData.append('Birthday', birthday);
+    formData.append('Address', address);
+    formData.append('Email', email);
+    formData.append('Id', id);
+
+    if (newPassword !== '') {
+        const hashPw = SHA256(newPassword).toString();
+        formData.append('Password', hashPw);
+    } else { 
+        formData.append('Password', '');
+    }
+
+    if (image) {
+        formData.append('Image', image);
+    }
+    formData.append('Username', username);
+
+    console.log("FormData pre slanja na API:", Array.from(formData.entries()));
+    let data;
+
+    if (oldPasswordRepeat !== '' || newPasswordRepeat !== '' || newPassword !== '' && validateNewPasswords(password, oldPasswordRepeat, newPassword, newPasswordRepeat)) {
+        console.log("Uspešno unete nove lozinke");
+        data = await updateUserFieldsApi(apiEndpoint, formData, jwt);
+        console.log("Podaci sa drugog poziva", data);
+    } else if (oldPasswordRepeat === '' && newPasswordRepeat === '' && newPassword === '') {
+        data = await updateUserFieldsApi(apiEndpoint, formData, jwt);
+    }
+
+    if (data && data.user) {
+        console.log("Promenjeni korisnički podaci:", data.user);
+        return data.user;
+    } else {
+        console.error("Podaci ili data.user nisu definisani:", data);
+        return null; // ili obradi ovaj slučaj na odgovarajući način
+    }
+}
+
 
 
 // Funkcija za dobijanje informacija o korisniku

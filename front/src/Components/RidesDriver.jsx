@@ -11,7 +11,8 @@ export default function RidesDriver(){
     const fetchDrivers = async()=>{
         try {
             const data = await getMyRidesDriver(token, apiEndpoint, localStorage.getItem('idUser'));
-            console.log("Rides:", data.rides);
+            //console.log("Rides:", data.rides);
+            console.log("API Response:", data);
             if (data && Array.isArray(data.rides)) {
                 setRides(data.rides);
             } else {

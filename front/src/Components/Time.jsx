@@ -1,4 +1,4 @@
-    import React, {useState, useEffect} from 'react';
+   /* import React, {useState, useEffect} from 'react';
 
     const Time = ({dolazak, krajnje, kraj})=>{
         const [preostaloVremeDolaska, setPreostaloVremeDolaska] = useState(dolazak * 60);
@@ -61,4 +61,4 @@
             </div>
         );
     }   
-    export default Time;
+    export default Time;*/

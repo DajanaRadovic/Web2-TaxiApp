@@ -1,31 +1,14 @@
 import axios from 'axios';
-/*
-export async function GetDrivers(apiEndpoint, jwtToken) {
-    try {
-        const config = {
-            headers: {
-                Authorization: `Bearer ${jwtToken}`, // Include the JWT token
-            }
-        };
 
-        return axios.get(apiEndpoint, config)
-        .then(response => response.data);
-        
-    } catch (error) {
-        console.error('Error fetching data (async/await):', error.message);
-        throw error; // rethrow the error to handle it in the component
-    }
-}*/
 
 export async function GetDrivers(apiEndpoint, jwtToken) {
     try {
         const config = {
             headers: {
-                Authorization: `Bearer ${jwtToken}`, // Include the JWT token
+                Authorization: `Bearer ${jwtToken}`,
             }
         };
 
-        // Using await instead of .then
         const response = await axios.get(apiEndpoint, config);
         console.log("API Response:", response.data);
         return response.data;

@@ -6,6 +6,7 @@ import { FaSignOutAlt } from 'react-icons/fa';
 import Drivers from './Drivers';
 import Verification from './Verification';
 import RidesAdmin from './RidesAdmin';
+import {MdPerson} from 'react-icons/md';
 
 
 const sidebarStyle = {
@@ -24,13 +25,14 @@ const sidebarStyle = {
 };
 
 const mainContentStyle = {
-    marginLeft: '100px', // Da bi se glavni sadržaj pomerio udesno i bio pored sidebar-a
+    marginLeft: '250px', // Povećano da bi se pomerio dalje od sidebar-a
     padding: '20px',
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    borderRadius: '8px',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)', // Pozadina sa prozirnošću
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Blaga senka
+    borderRadius: '8px', // Zaobljeni uglovi
     minHeight: '100vh', // Da bi sadržaj zauzimao celu visinu stranice
     fontFamily: 'Arial, sans-serif',
+    width: 'calc(100% - 250px)',
 };
 
 const buttonStyle = {
@@ -90,13 +92,14 @@ const cancelButtonStyle = {
 };
 
 const profileContainerStyle = {
-    maxWidth: '600px', // Maksimalna širina za formu
+    maxWidth: '800px', // Maksimalna širina za formu
+    width: '80%', // Postavite širinu na 100% unutar glavnog sadržaja
     maxHeight: '60vh', // Maksimalna visina za formu, prilagodi prema potrebi
     margin: '0 auto', // Centriranje forme u sredini
     padding: '20px',
     backgroundColor: '#ffffff',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    borderRadius: '8px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Blaga senka
+    borderRadius: '8px', // Zaobljeni uglovi
     overflowY: 'auto', // Omogućava vertikalno skrolovanje
 };
 
@@ -138,7 +141,7 @@ export default function AdminDashboard(props) {
     const [address, setAddress] = useState('');
     const [image, setImage] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
-    const [pom, setPom] = useState('editProfile');
+    const [pom, setPom] = useState('verify');
     const [fileSelected, setFileSelected] = useState(null);
     const [userInit, setUserInit] = useState({});
     // eslint-disable-next-line no-unused-vars
@@ -180,47 +183,21 @@ export default function AdminDashboard(props) {
                 setRole(user.role);
                 setStatus(user.status);
                 setSumRating(user.sumRating);
-                setUsername(user.username || '');
+                setUsername(user.username);
             } catch (error) {
                 console.log('Error fetching:', error.message);
             }
         };
         fetchUserDetails();
-    }, [jwt, apiUserDetails, idUser]);
+    }, [jwt, apiUserDetails, idUser, pom]);
 
-   /* const handleSaveChangeClick = async () => {
-        const ChangeUserDetails = await updateUserFields(apiChangeUser, firstName, lastName, birthday, address, email, password, fileSelected, username, jwt, newPassword, repeatPassword, oldPassword, idUser)
-       
-        console.log("Change user:", ChangeUserDetails);
-        setUserInit(ChangeUserDetails);
-        setUserDetails(ChangeUserDetails);
-        setAddress(ChangeUserDetails.address);
-        setAvgRating(ChangeUserDetails.avgRating);
-        setBirthday(formatDateOnly(ChangeUserDetails.birthday));
-        setEmail(ChangeUserDetails.email);
-        setFirstName(ChangeUserDetails.firstName);
-        setImage(generateImageUrl(ChangeUserDetails.image));
-        setIsBlocked(ChangeUserDetails.isBlocked);
-        setIsVerified(ChangeUserDetails.isVerified);
-        setLastName(ChangeUserDetails.lastName);
-        setNumRating(ChangeUserDetails.numRatings);
-        setPassword(ChangeUserDetails.password);
-        setRole(ChangeUserDetails.role);
-        setStatus(ChangeUserDetails.status);
-        setSumRating(ChangeUserDetails.sumRatings);
-        setUsername(ChangeUserDetails.username);
-        setOldPassword('');
-        setNewPassword('');
-        setRepeatPassword('');
-        setIsEditing(false);
-        //setFileSelected(null);
-    };*/
+  
     const handleSaveChangeClick = async () => {
 
         console.log("Username before sending to API:",username);
         try {
             const ChangeUserDetails = await updateUserFields(
-                apiChangeUser, firstName, lastName, birthday, address, email, password, fileSelected, username, jwt, newPassword, repeatPassword, oldPassword, idUser
+                apiChangeUser, firstName, lastName, birthday, address, email, password, username, jwt, fileSelected,  newPassword, repeatPassword, oldPassword, idUser
             );
     
             console.log("Change user:", ChangeUserDetails);
@@ -247,6 +224,7 @@ export default function AdminDashboard(props) {
                 setNewPassword('');
                 setRepeatPassword('');
                 setIsEditing(false);
+                setPom('editProfile');
                 // setFileSelected(null);
             } else {
                 console.error("ChangeUserDetails is undefined");
@@ -338,10 +316,28 @@ export default function AdminDashboard(props) {
     return (
         <div>
             <div style={sidebarStyle}>
-                <h2 style={{ marginBottom: '20px' }}>Menu</h2>
-                <button style={buttonStyleMenu} onClick={handleEditProfile}>
-                    PROFILE
-                </button>
+         
+                <button 
+                    onClick={handleEditProfile} 
+                    style={{
+                    width: '50px',
+                    height: '50px',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    border: 'none',
+                    backgroundColor: 'white', 
+                    cursor: 'pointer',
+                    marginRight:'auto',
+                 
+                
+            }}>
+                     <MdPerson size={50} />
+                     
+                </button> 
+              
+
                 <button style={buttonStyleMenu} onClick={handleShowDrivers}>
                     DRIVERS
                 </button>
@@ -351,14 +347,13 @@ export default function AdminDashboard(props) {
                 <button style={buttonStyleMenu} onClick={handleShowAllRides}>
                     RIDES
                 </button>
+                <button style={buttonStyleMenu} onClick={handleSignOut}>
+                    <FaSignOutAlt /> Sign Out
+                </button>
             </div>
             <div style={mainContentStyle}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                     <h1>Admin Dashboard</h1>
-                    <button onClick={handleSignOut} style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', background: 'none', border: 'none', color: '#007bff', fontSize: '16px' }}>
-                        <FaSignOutAlt size={20} style={{ marginRight: '8px' }} />
-                        <span>Sign Out</span>
-                    </button>
                 </div>
                 {pom === 'editProfile' ? (
                     <div style={profileContainerStyle}>

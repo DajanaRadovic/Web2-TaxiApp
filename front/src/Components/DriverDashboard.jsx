@@ -74,13 +74,14 @@ const cancelButtonStyle = {
 };
 
 const profileContainerStyle = {
-    maxWidth: '800px', 
-    maxHeight: '80vh', 
-    margin: '0 auto', 
+    maxWidth: '600px', // Maksimalna širina za formu
+    maxHeight: '60vh', // Maksimalna visina za formu, prilagodi prema potrebi
+    margin: '0 auto', // Centriranje forme u sredini
     padding: '20px',
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    backgroundColor: '#ffffff',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     borderRadius: '8px',
+    overflowY: 'auto',
   
 };
 
@@ -155,7 +156,7 @@ export default function DriverDashboard(props){
     const [image, setImage] = useState(null);
     // eslint-disable-next-line no-unused-vars
     const [isEditing, setIsEditing] = useState(false);
-    const [pom, setPom] = useState('editProfile');
+    const [pom, setPom] = useState('rides');
     const [fileSelected, setFileSelected] = useState(null);
     const [userInit, setUserInit] = useState({});
     // eslint-disable-next-line no-unused-vars
@@ -214,32 +215,49 @@ export default function DriverDashboard(props){
             }
         };
         fetchUserDetails();
-    }, [jwt, apiUserDetails, idUser]);
+    }, [jwt, apiUserDetails, idUser, pom]);
 
     const handleSaveChangeClick = async () => {
-        const ChangeUserDetails = await updateUserFields(apiEndpoint, firstName, lastName, birthday, address, email, password, fileSelected, username, jwt, newPassword, repeatPassword, oldPassword, idUser)
-        setUserInit(ChangeUserDetails);
-        setUserDetails(ChangeUserDetails);
-        setAddress(ChangeUserDetails.address);
-        setAvgRating(ChangeUserDetails.avgRating);
-        setBirthday(formatDateOnly(ChangeUserDetails.birthday));
-        setEmail(ChangeUserDetails.email);
-        setFirstName(ChangeUserDetails.firstName);
-        setImage(generateImageUrl(ChangeUserDetails.image));
-        setIsBlocked(ChangeUserDetails.isBlocked);
-        setIsVerified(ChangeUserDetails.isVerified);
-        setLastName(ChangeUserDetails.lastName);
-        setNumRating(ChangeUserDetails.numRatings);
-        setPassword(ChangeUserDetails.password);
-        setRole(ChangeUserDetails.role);
-        setStatus(ChangeUserDetails.status);
-        setSumRating(ChangeUserDetails.sumRatings);
-        setUsername(ChangeUserDetails.username);
-        setOldPassword('');
-        setNewPassword('');
-        setRepeatPassword('');
-        setIsEditing(false);
-        setFileSelected(null);
+        console.log("Username before sending to API:",username);
+        try {
+            const ChangeUserDetails = await updateUserFields(
+                apiEndpoint, firstName, lastName, birthday, address, email, password, username, jwt, fileSelected,  newPassword, repeatPassword, oldPassword, idUser
+            );
+    
+            console.log("Change user:", ChangeUserDetails);
+    
+            if (ChangeUserDetails) {
+                setUserInit(ChangeUserDetails);
+                setUserDetails(ChangeUserDetails);
+                setAddress(ChangeUserDetails.address);
+                setAvgRating(ChangeUserDetails.avgRating);
+                setBirthday(formatDateOnly(ChangeUserDetails.birthday));
+                setEmail(ChangeUserDetails.email);
+                setFirstName(ChangeUserDetails.firstName);
+                setImage(generateImageUrl(ChangeUserDetails.image));
+                setIsBlocked(ChangeUserDetails.isBlocked);
+                setIsVerified(ChangeUserDetails.isVerified);
+                setLastName(ChangeUserDetails.lastName);
+                setNumRating(ChangeUserDetails.numRatings);
+                setPassword(ChangeUserDetails.password);
+                setRole(ChangeUserDetails.role);
+                setStatus(ChangeUserDetails.status);
+                setSumRating(ChangeUserDetails.sumRatings);
+                setUsername(ChangeUserDetails.username);
+                setOldPassword('');
+                setNewPassword('');
+                setRepeatPassword('');
+                setIsEditing(false);
+                setPom('editProfile');
+                // setFileSelected(null);
+            } else {
+                console.error("ChangeUserDetails is undefined");
+            }
+        } catch (error) {
+            console.error("Error updating user fields:", error);
+        }
+
+
     }
 
     const handleSignOut = () => {
@@ -342,7 +360,12 @@ export default function DriverDashboard(props){
                 }
 
                 if (data.trip) {
-                    console.log("Active trip:", data.trip);
+                  //  console.log("Active trip:", data.trip);
+                   const rideExists = rides.some(ride => ride.id === data.trip.id);
+
+                if (!rideExists) {
+                    setRides(prevRides => [...prevRides, data.trip]);
+                }
 
                     if (data.trip.accepted && data.trip.timeToDriverArrivalSeconds > 0) {
                         setClockSimulation(`You will arrive in: ${data.trip.timeToDriverArrivalSeconds} seconds`);
@@ -365,11 +388,12 @@ export default function DriverDashboard(props){
         fetchRideData();
 
         // Set up an interval to fetch data every 1 second
-        const intervalId = setInterval(fetchRideData, 1000);
+        const intervalId = setInterval(fetchRideData, 5000);
 
         // Clean up the interval when the component is unmounted
         return () => clearInterval(intervalId);
-    }, [jwt, apiCurrentRide, idUser]);
+
+    }, [jwt, apiCurrentRide, idUser, rides]);
 
     return (
         <div style={{ display: 'flex', flexDirection: 'row', height: '100vh' }}>
@@ -382,8 +406,8 @@ export default function DriverDashboard(props){
                 </button>
                 <div>
                     {isBlocked ? (
-                        <p style={{ color: "white", fontSize: "20px", display: "flex", alignItems: "center" }}>
-                            <FaTimes style={{ marginRight: "10px" }} /> You are blocked
+                        <p style={{ color: "black", fontSize: "20px", display: "flex", alignItems: "center", fontFamily:'Georfia, serif' }}>
+                            <FaTimes style={{ marginRight: "10px", color:'red' }} /> You are blocked
                         </p>
                     ) : (
                         <p style={{ color: "black", fontSize: "20px", display: "flex", alignItems: "center", fontFamily:"Georgia, serif" }}>
@@ -391,7 +415,7 @@ export default function DriverDashboard(props){
                             <span style={{ marginLeft: "10px" }}>
                                 {status === 0 && <FaSpinner />}
                                 {status === 1 && <FaCheckCircle style={{ color: 'green' }} />}
-                                {status === 2 && <FaTimes />}
+                                {status === 2 && <FaTimes/>}
                             </span>
                         </p>
                     )}

@@ -41,6 +41,9 @@ export  async function DriveAccept(apiEndpoint, idDriver,idDrive,jwt) {
 
 export async function getCurrentRide(jwt, apiEndpoint,idUser) {
     try {
+        if(!idUser || typeof idUser !== 'string'){
+            throw new Error('Invalid user Id');
+        }
         const config = {
             headers: {
                 Authorization: `Bearer ${jwt}`,
