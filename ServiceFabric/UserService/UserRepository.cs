@@ -131,7 +131,7 @@ namespace UserService
                 userTable.Address = user.Address;
                 userTable.Birthday = user.Birthday;
                 userTable.Username = user.Username;
-                userTable.Username = user.Username;
+               // userTable.Username = user.Username;
                 userTable.ImageUrl = user.ImageUrl;
                 var operation = TableOperation.Replace(userTable);
                 await User.ExecuteAsync(operation);

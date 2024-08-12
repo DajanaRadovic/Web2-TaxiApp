@@ -233,7 +233,7 @@ namespace DriveService
                         accept.TimeToEndTripInSeconds = 60;
                         accept.IdDriver = idDriver;
                         accept.Accepted = true;
-                        await drive.SetAsync(t, accept.IdRider, accept);
+                        await drive.SetAsync(t, accept.IdDrive, accept);
                         if (await driveRepo.Update(idDriver, idRide))
                         {
                             await t.CommitAsync();

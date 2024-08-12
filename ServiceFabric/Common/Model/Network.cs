@@ -16,21 +16,28 @@ namespace Common.Model
     {
         [DataMember]
         public Guid Id { get; set; }
+
         [DataMember]
         public string FirstName { get; set; }
+
         [DataMember]
         public string LastName { get; set; }
+
         [DataMember]
         public string Username { get; set; }
+
         [DataMember]
         public string Password { get; set; }
+
         [DataMember]
         public DateTime Birthday { get; set; }
+
         [DataMember]
         public string Email { get; set; }
 
         [DataMember]
         public string PreviousEmail { get; set; }
+
         [DataMember]
         public string Address { get; set; }
         [DataMember]

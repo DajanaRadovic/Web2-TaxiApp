@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Fabric;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -318,17 +319,18 @@ namespace UserService
                     if (!string.IsNullOrEmpty(user.Address)) userFromReliable.Address = user.Address;
 
                     if (user.Birthday != DateTime.MinValue) userFromReliable.Birthday = user.Birthday;
-
+                  
                     if (!string.IsNullOrEmpty(user.Password)) userFromReliable.Password = user.Password;
 
-                    if (!string.IsNullOrEmpty(user.Username)) userFromReliable.Username = user.Username;
+                     if (!string.IsNullOrEmpty(user.Username)) userFromReliable.Username = user.Username;
+                   // userFromReliable.Username = user.Username;
 
                     if (user.Image != null && user.Image.File != null && user.Image.File.Length > 0) userFromReliable.Image = user.Image;
 
                     Debug.WriteLine($"Updated user: {userFromReliable.Username} with ID: {userFromReliable.Id}");
 
 
-                    await users.TryRemoveAsync(tx, user.Id); // ukloni ovog proslog 
+                    await users.TryRemoveAsync(tx, user.Id, TimeSpan.FromSeconds(10), CancellationToken.None); // ukloni ovog proslog 
 
                     await users.AddAsync(tx, userFromReliable.Id, userFromReliable); // dodaj ga prvo u reliable 
 

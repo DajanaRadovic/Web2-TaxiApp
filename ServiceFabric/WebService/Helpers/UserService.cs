@@ -96,7 +96,7 @@ namespace WebService.Helpers
 
                 return result;
             }
-            catch
+            catch(Exception)
             {
                 throw;
             }
@@ -121,7 +121,7 @@ namespace WebService.Helpers
 
                 return result;
             }
-            catch
+            catch(Exception)
             {
                 throw;
             }
@@ -152,7 +152,7 @@ namespace WebService.Helpers
 
                 return result;
             }
-            catch
+            catch(Exception)
             {
                 throw;
             }
